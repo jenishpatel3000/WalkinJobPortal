@@ -89,7 +89,7 @@ export class EditFormComponent implements OnInit {
       next: (data) => {
         console.log('In Add Update User');
         alert('Updated');
-        this.router.navigate(['/job-list']);
+        this.router.navigate(['admin/job-list']);
         console.log(data);
       },
       error: (err) => {

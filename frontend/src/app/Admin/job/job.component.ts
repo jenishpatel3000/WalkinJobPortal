@@ -75,7 +75,7 @@ export class JobComponent implements OnInit {
       error: (err) => {
         if (err.status === 404) {
           alert('User Added');
-          this.router.navigate(['/job-list']);
+          this.router.navigate(['admin/job-list']);
           console.error('Resource not found:', err);
           // Display a user-friendly error message to the user
           // You can also navigate to a different route or perform other actions here

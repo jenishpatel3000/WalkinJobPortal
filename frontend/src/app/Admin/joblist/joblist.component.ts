@@ -12,10 +12,10 @@ export class JoblistComponent implements OnInit {
   constructor(private service: DataService) {}
 
   ngOnInit(): void {
-    // this.service.getJobs().subscribe((data) => {
-    //   console.log(data);
-    //   this.jobs = data;
-    // });
+    this.service.getJobs().subscribe((data) => {
+      console.log(data);
+      this.jobs = data;
+    });
   }
   GetAllUsers() {
     this.service.getJobs().subscribe((data) => {

@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
           console.log(data)
           this.setToken(data.token);
-          this.router.navigate(['/job-list']);
+          this.router.navigate(['admin/job-list']);
         });
     }
     

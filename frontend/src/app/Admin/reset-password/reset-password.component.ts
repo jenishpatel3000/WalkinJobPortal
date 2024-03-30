@@ -82,7 +82,7 @@ export class ResetPasswordComponent implements OnInit {
           // You can also navigate to a different route or perform other actions here
         } else {
           alert('Password Changed');
-          this.router.navigate(['/login']);
+          this.router.navigate(['admin/login']);
           console.error('An error occurred:', err);
           // Handle other types of errors here
         }
