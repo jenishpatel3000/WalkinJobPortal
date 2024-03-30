@@ -1,0 +1,206 @@
+<div class="containerTitle">
+    <div class="title">Personal Information</div>
+    <div class="editcontainer">
+        <img class="penicon" src="../../../assets/svgs/pen-solid.svg" alt="edit icon" />
+        <div class="editname">Edit</div>
+    </div>
+</div>
+<div class="flex-class">
+    <form class="personal-info-div">
+        <div class="personal-info">
+            <div class="data-div">
+                <div class="label">First Name*</div>
+                <div class="text">{{userData.firstName}}</div>
+            </div>
+            <div class="data-div">
+                <div class="label">Last Name*</div>
+                <div class="text">{{userData.lastName}}</div>
+            </div>
+            <div class="data-div">
+                <div class="label">Email*</div>
+                <div class="text">{{userData.email}}</div>
+            </div>
+            <div class="data-div">
+                <div class="label">Phone Number*</div>
+                <div class="number-div">
+                    <div class="plus">+</div>
+                    <div class="text left">{{userData.countrycode}}</div>
+                    <div class="text left">{{userData.phoneNo}}</div>
+                </div>
+            </div>
+            <label class="data-div upload-resume-div" tabindex="0" for="resume-input">
+                <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload" class="upload-svg">
+                <input type="file" class="resume-input" tabindex="1" accept="application/pdf" id="resume-input" />
+                <div class="upload-label">Upload Resume</div>
+                <input class="file-name" placeholder="{{userData.resumeFileName}}" disabled />
+            </label>
+            <div class="data-div">
+                <div class="label">Enter Portfolio URL(if any)</div>
+                <div class="text">{{userData.portfolioUrl}}</div>
+            </div>
+            <div class="data-div">
+                <div class="label bottom2">Preferred Job Roles*</div>
+
+                <div class="roles-options bottom" *ngFor="let role of userData.rolesId">
+                    <div class="roles-options">
+                        <label for="{{role}}" class="roles-label">{{getRoleName(role)}}</label><br>
+                    </div>
+                </div>
+            </div>
+            <div class="data-div">
+                <div class="label">If You Are Registering Via A Referral, Please Mention Full Name Of The Employee Who
+                    Referred You</div>
+                <div class="text">{{userData.referalEmpName}}</div>
+            </div>
+            <div class="sendmeupdates-div" *ngIf="userData.sendMeUpdate">
+                <input type="checkbox" id="sendmeupdates" class="updates-checkbox black" checked disabled>
+                <label for="sendmeupdates" class="updates-label">Send me job related updates via mail</label>
+            </div>
+            <div class="sendmeupdates-div" *ngIf="!userData.sendMeUpdate">
+                <input type="checkbox" id="sendmeupdates" class="updates-checkbox black" disabled>
+                <label for="sendmeupdates" class="updates-label">Send me job related updates via mail</label>
+            </div>
+
+        </div>
+        <div class="photo-upload">
+            <div class="flex-div">
+                <img [src]=profilePhotoSrc alt="default-profile-photo" tabindex="" class="profile-photo" />
+            </div>
+        </div>
+    </form>
+</div>
+<div class="containerTitle">
+    <div class="title">Qualifications</div>
+    <div class="editcontainer">
+        <img class="penicon" src="../../../assets/svgs/pen-solid.svg" alt="edit icon" />
+        <div class="editname">Edit</div>
+    </div>
+</div>
+<div class="edblueline">
+    <div class="edtitle">Educational Qualifications</div>
+
+</div>
+<div class="Edqualifications">
+    <div class="data-div1">
+        <div class="label">Aggregate Percentage*</div>
+        <div class="text">{{userData.percentage}}</div>
+    </div>
+    <div class="data-div1">
+        <div class="label">Year of Passing*</div>
+        <div class="text">{{userData.passingYear}}</div>
+    </div>
+    <div class="data-container">
+        <div class="data-div">
+            <div class="label">Qualification*</div>
+            <div class="text">{{getQualificationName(userData.qualificationId)}}</div>
+        </div>
+        <div class="data-div">
+            <div class="label">Stream*</div>
+            <div class="text">{{getStreamName(userData.streamId)}}</div>
+        </div>
+    </div>
+    <div class="data-container">
+        <div class="data-div">
+            <div class="label">College*</div>
+            <div class="text">{{getCollegeName(userData.collegeId)}}</div>
+        </div>
+        <div class="data-div">
+            <div class="label">If others, please enter your college name</div>
+            <div class="text">{{userData.otherCollege}}</div>
+        </div>
+    </div>
+    <div class="data-div1">
+        <div class="label">Where is your college located?*</div>
+        <div class="text">{{userData.otherCollegeLocation}}</div>
+    </div>
+</div>
+<div class="problueline">
+    <div class="protitle">Professional Qualifications</div>
+</div>
+<div class="proqualifications1">
+    <div class="label">Applicant Type*</div>
+    <div class="application-type text">{{getApplicationTypeName(userData.applicationTypeId)}}</div>
+</div>
+<div class="proqualifications"
+    *ngIf="getApplicationTypeName(userData.applicationTypeId) === 'Experienced'">
+    <div class="data-div1">
+        <div class="label">Years of Experience*</div>
+        <div class="text">{{userData.expYear}}</div>
+    </div>
+    <div class="data-div1">
+        <div class="label">Current CTC* (In Rupees)</div>
+        <div class="text">{{userData.currentCtc}}</div>
+    </div>
+    <div class="data-div1">
+        <div class="label">Expected CTC* (In Rupees)</div>
+        <div class="text">{{userData.expectedCtc}}</div>
+    </div>
+
+    <div class="data-div">
+        <div class="label">Select All The Technologies You Expertise In*</div>
+        <div class="roles-options"
+            *ngFor="let tech of userData.expertTechsId">
+            <div class="text">{{getTechName(tech)}}</div>
+        </div>
+    </div>
+    <div class="data-div">
+        <div class="label">If others, please mention</div>
+        <div class="text">{{userData.otherExpertTechs}}</div>
+    </div>
+    <div class="data-div">
+        <div class="label">Select All The Technologies You Are Familiar In</div>
+        <div class="roles-options" *ngFor="let tech of userData.familiarTechsId">
+            <div class="text">{{getTechName(tech)}}</div>
+        </div>
+    </div>
+    <div class="data-div">
+        <label for="inputTech2" class="label">If others, please mention</label>
+        <div class="text">{{userData.otherFamiliarTechs}}</div>
+    </div>
+    <div class="data-div nobottom">
+
+        <div class="label">Are you currently on notice period?*</div>
+        <div class="text" *ngIf="userData.currentlyOnNoticePeriod == 1">Yes</div>
+        <div class="text" *ngIf="userData.currentlyOnNoticePeriod == 0">No</div>
+    </div>
+
+    <div class="data-div">
+        <label for="noticeperiod" class="label">If Yes, when will your notice period end?*</label>
+        <div class="text">{{userData.noticeEnd}}</div>
+    </div>
+    <div class="data-div nobottom">
+        <div class="label">Have You Appeared For Any Test By Zeus in the past 12 months?*</div>
+        <div class="text" *ngIf="userData.appearedZeusTest == 1">Yes</div>
+        <div class="text" *ngIf="userData.appearedZeusTest == 0">No</div>
+    </div>
+
+    <div class="data-div">
+        <label for="jobrole" class="label">If Yes, which role did you apply for?</label>
+        <div class="text">{{userData.zeusTestRole}}</div>
+    </div>
+</div>
+
+<div class="fresherqualifications"
+    *ngIf="getApplicationTypeName(userData.applicationTypeId) === 'Fresher'">
+
+    <div class="data-div">
+        <div class="label">Select All The Technologies You Are Familiar In</div>
+        <div class="roles-options" *ngFor="let tech of userData.familiarTechsId">
+            <div class="text">{{getTechName(tech)}}</div>
+        </div>
+    </div>
+    <div class="data-div">
+        <label for="inputTech2" class="label">If others, please mention</label>
+        <div class="text">{{userData.otherFamiliarTechs}}</div>
+    </div>
+    <div class="data-div nobottom">
+        <div class="label">Have You Appeared For Any Test By Zeus in the past 12 months?*</div>
+        <div class="text" *ngIf="userData.appearedZeusTest == 1">Yes</div>
+        <div class="text" *ngIf="userData.appearedZeusTest == 0">No</div>
+    </div>
+
+    <div class="data-div">
+        <label for="jobrole" class="label">If Yes, which role did you apply for?</label>
+        <div class="text">{{userData.zeusTestRole}}</div>
+    </div>
+</div>

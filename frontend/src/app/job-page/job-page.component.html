@@ -1,0 +1,38 @@
+<div class="JobContainer" *ngFor="let job of Job">
+    <div class="JobTitle">
+        {{job.jobName}}
+    </div>
+    <div class="JobDateLocationContainer">
+        <label for="JobDate" class="JobDateLabel">Date & Time :</label>
+        <div class="JobDate">
+            <div class="JobDateTime">{{formatdate(job.fromTime)}} to {{formatdate(job.toTime)}}</div>
+            <div class="verticalline"></div>
+            <div class="JobLocation">
+                <img src="/assets/svgs/location-dot-solid.svg" class="locimg" alt="locationicon" />
+                <div class="locationname">
+                    {{job.location.locationName}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="DividingLine"></div>
+    <div class="JobRoleContainer">
+        <label class="JobRoleLabel">Job Roles :</label>
+        <div class="RoleContainer">
+            <div class="JobRole" *ngFor="let role of job.jobRoles; let last = last">
+                <!-- <img src="/assets/{{role.role.roleName}}.png" class="JobRoleImage" alt="" /> -->
+                <div class="JobRoleName">{{role.role.roleName}}</div>
+                <div class="verticalline2" *ngIf="!last"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="JobSpecialMessage" *ngIf="job.special_message">
+        {{job.special_message}}</div>
+    <div class="buttonContainer">
+        <button type="button" class="viewbtn" [routerLink]="['/jobs',job.jobId]">
+            VIEW MORE DETAILS
+        </button>
+    </div>
+    <div class="expireDate" *ngIf="this.remainingDays < 7 && this.remainingDays > 0">Expire in {{this.remainingDays}} days</div>
+</div>

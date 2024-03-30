@@ -1,0 +1,18 @@
+<div class="header">
+    <img src="../../assets/logo used in header.svg" alt="Quantum logo" class="header-title-svg">
+    <nav>
+        <div class="nav " id="nav-tab" role="tablist">
+          <button *ngIf="isLoggedIn()" class="nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"  [routerLink]="['/add-job']">ADD JOB</button>
+          <button *ngIf="isLoggedIn()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" mr-5  [routerLink]="['/job-list']">JOB LIST</button>
+          <button *ngIf="isLoggedIn()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" mr-5  [routerLink]="['/application']">VIEW APPLICATIONS</button>
+          <button *ngIf="isLoggedIn()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" mr-5  (click)="logout()">LOG OUT</button>
+          
+        </div>
+      </nav>
+      
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,73 @@
+$progressbarbgcolor: #ffffff;
+$completeprogresscolor: #3fd28b;
+$incompleteprogresscolor: #757575;
+$textcolor: #222222;
+$progressline: #00000033;
+
+.reg-progress-bar {
+  margin: 2.4rem;
+  padding: 1.2rem 1.6rem;
+  background-color: $progressbarbgcolor;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.2rem;
+
+  .progress-div {
+    display: flex;
+    align-items: center;
+
+    .complete {
+      background-color: $completeprogresscolor;
+      .progress-numbers {
+        color: #333333;
+      }
+    }
+
+    .incomplete {
+      background-color: $incompleteprogresscolor;
+      .progress-numbers {
+        color: white;
+      }
+    }
+
+    .progress-numbers-circle {
+      height: 3.2rem;
+      width: 3.2rem;
+      border-radius: 50%;
+      display: flex;
+
+      .progress-numbers {
+        font-size: 1.6rem;
+        font-weight: 100;
+        margin: auto auto;
+      }
+    }
+
+    .progress-labels {
+      font-size: 1.6rem;
+      font-weight: normal;
+      color: $textcolor;
+      margin-left: 0.8rem;
+
+      @media only screen and (max-width: 600px) {
+        font-size: 1.3rem;
+      }
+      @media only screen and (max-width: 470px) {
+        font-size: 1.2rem;
+      }
+      @media only screen and (max-width: 444px) {
+        font-size: 1rem;
+      }
+      @media only screen and (max-width: 380px) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  .progress-line {
+    height: 0.1rem;
+    background-color: $progressline;
+    flex: 1;
+    margin: 0.8rem;
+  }
+}

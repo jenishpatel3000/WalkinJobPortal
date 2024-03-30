@@ -1,0 +1,82 @@
+.footer-container {
+  text-align: center;
+  margin-top: auto;
+  height: auto;
+  .footer {
+    margin-top: 6.65rem;
+    @include flexcontainer(center);
+    font-family: $mainfont, sans-serif;
+    letter-spacing: 0rem;
+    text-align: center;
+    color: #1f7a54;
+    opacity: 1;
+    .about {
+      width: 4rem;
+      height: 1.8rem;
+      text-align: center;
+      @include fontstyle($mainfont, 1.4rem, 500, #1f7a1f, 1);
+      letter-spacing: 0rem;
+      margin-right: 0.8rem;
+    }
+
+    .contactus {
+      /* width: 7.2rem; */
+      @include fontstyle($mainfont, 1.4rem, 500, #1f7a1f, 1);
+      margin-left: 0.8rem;
+      height: 1.8rem;
+      text-align: center;
+      letter-spacing: 0rem;
+    }
+    .middleline {
+      width: 0px;
+      height: 1.8rem;
+      border: 0.1rem solid #0000001f;
+      opacity: 1;
+    }
+  }
+  .last-line {
+    @include flexcontainer(center);
+    flex-direction: row;
+    height: 4rem;
+    width: auto;
+    background: #e0e1e1 0% 0% no-repeat padding-box;
+    opacity: 1;
+    margin-top: 1.6rem;
+
+    .footer-logo {
+      height: 2.4rem;
+      width: 9rem;
+    }
+
+    .pipe {
+      margin: 0 1.6rem;
+      width: 0rem;
+      height: 2.4rem;
+      border: 0.1rem solid #0000001f;
+      opacity: 1;
+    }
+
+    .f1 {
+      text-align: left;
+      @include fontstyle($mainfont, 1.2rem, 500, #616161, 1);
+      letter-spacing: 0rem;
+    }
+
+    .copyright {
+      // width: 12.9rem;
+      height: 1.5rem;
+      margin-right: 0.8rem;
+    }
+
+    .zeus {
+      // width: 13.1rem;
+      margin-right: 1.1rem;
+      font-weight: 550;
+    }
+
+    .rights {
+      // width: 10.6rem;
+      height: 1.5rem;
+    }
+  }
+}

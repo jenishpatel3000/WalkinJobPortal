@@ -1,0 +1,68 @@
+<div class="login-container">
+    <div class="blueline"></div>
+    <div class="content">
+        <div class="card-head">
+            <h2 class="heading_box">Log in</h2>
+        </div>
+        <form method="post">
+            <div class="inputContainer1">
+                <div *ngIf="emailRequired" class="error">Email ID is required.</div>
+                <div *ngIf="emailInalid" class="error">Enter a valid email address.</div>
+                <input type="text" required="" class="customInput u1" name="username" placeholder="Email ID*"
+                    [(ngModel)]="loginData.username" />
+
+                <div class="inputUnderline"></div>
+            </div>
+            <a href="#" class="forgot">FORGOT email id?</a>
+
+            <div class="inputContainer2">
+                <div *ngIf="passwordRequired" class="error">Password is required.</div>
+                <div class="passwordWrapper">
+                    <input type="{{ passwordFieldType }}" required class="customInput u1" name="password"
+                        id="passwordField" placeholder="Password*" [(ngModel)]="loginData.password" />
+
+                    <button type="button" class="showPasswordBtn" (click)="togglePassword()">
+                        <img class="showPassword"
+                            src="./assets/quantum screen assets/quantum screen assets/icons/preview.svg"
+                            alt="Show password icon">
+                    </button>
+                    <div class="inputUnderline"></div>
+                </div>
+            </div>
+            <a href="#" class="forgot">FORGOT PASSWORD?</a>
+
+
+            <label class="remember"><input type="checkbox" class="rem-check" [checked]="loginData.rememberMe"
+                    (change)="onRememberMeChange($event)" />
+                Remember Me</label>
+
+
+            <!-- Login button -->
+        </form>
+    </div>
+    <div class="button-div">
+        <button class="submit" type="submit" (click)="login()">
+            <span class="btn-text">
+
+                LOG IN
+            </span>
+        </button>
+    </div>
+    <div class="notregistered">
+        <div class="not">Not registered yet?</div>
+        <div class="create"><a routerLink="/registration">
+
+                create an account
+            </a>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <span class="about">
+        About
+    </span>
+    |
+    <div class="contactus">
+        Contact Us
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="job-info-container">
+    <div class="JobContainer">
+        <div class="JobTitle">
+            {{Job.jobName}}
+        </div>
+        <div class="JobDateLocationContainer">
+            <label for="JobDate" class="JobDateLabel">Date & Time :</label>
+            <div class="JobDate">
+                <div class="JobDateTime">{{formatdate(Job.fromTime)}} to {{formatdate(Job.toTime)}}</div>
+                <div class="verticalline"></div>
+                <div class="JobLocation">
+                    <img src="/assets/svgs/location-dot-solid.svg" class="locimg" alt="locationicon" />
+                    <div class="locationname">
+                        {{Job.location.locationName}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="DividingLine"></div>
+        <div class="JobRoleContainer">
+            <label class="JobRoleLabel">Job Roles :</label>
+            <div class="RoleContainer">
+                <div class="JobRole" *ngFor="let role of Job.jobRoles; let last = last">
+                    <!-- <img src="/assets/{{role.role.roleName}}.png" class="JobRoleImage" alt="" /> -->
+                    <div class="JobRoleName">{{role.role.roleName}}</div>
+                    <div class="verticalline2" *ngIf="!last"></div>
+                </div>
+
+            </div>
+        </div>
+        <!-- <div class="JobSpecialMessage" *ngIf="Jobs.JobSpecialMessage"> -->
+        <!-- {{job.JobSpecialMessage}}</div> -->
+        <!-- <div class="expireDate" *ngIf="job.JobExpiringRemainingDays>0">Expire in {{job.JobExpiringRemainingDays}}
+                days</div> -->
+        <button class="apply-button" (click)="emitData()">APPLY</button>
+
+
+    </div>
+    <div class="pre-requisite-div">
+        <div class="pre-req-header" (click)="toggleExpansion()">
+            <div class="pre-req-title">Pre-requisites & Application Process</div>
+            <div class="expand-icon"><img src="../../../assets/svgs/expand_less_black_24dp.svg" alt="expand"
+                    class="rotated-image" [class.rotated]="!isNotExpanded"></div>
+        </div>
+        <div class="job-pre-requisite" [class.invisible]="isNotExpanded" [class.visible]="!isNotExpanded">
+            <div class="desc-title" *ngFor="let req of Job.jobDescs">
+                {{req.descTitle}} : <div class="desc" [innerText]="req.description"></div>
+                <div class="line-seperator"></div>
+            </div>
+        </div>
+    </div>
+    <div class="preference-div">
+        <div class="preference-title">Time Slots & Preferences</div>
+        <div class="time-slots-div">
+            <div *ngIf="slotRequired" class="error">Select a time slot</div>
+            Select a Time Slot :
+            <div class="slot" *ngFor="let slot of Job.jobSlots;let i = index">
+                <input type="radio" class="slot-input" id="slot"
+                    [value]="convertTo12HourFormat(slot.slot.fromTime) + ' to ' + convertTo12HourFormat(slot.slot.toTime)"
+                    name="slots" (change)="toggleSlot(slot.slotId)" />
+                <label for="slot" class="slot-label">
+                    {{convertTo12HourFormat(slot.slot.fromTime)}} to {{convertTo12HourFormat(slot.slot.toTime)}}
+                </label>
+            </div>
+        </div>
+        <div class="line-seperator"></div>
+        <div class="roles-div" *ngIf="Job.jobRoles">
+            <div *ngIf="rolesRequired" class="error">Select role preferrence</div>
+            Select Your Preference :
+            <div class="role" *ngFor="let role of Job.jobRoles">
+                <input type="checkbox" name="roles" id="role" class="role-input"
+                    (change)="toggleJobRole(role.role.roleId)" />
+                <label for="role" class="role-label">{{role.role.roleName}}</label>
+            </div>
+        </div>
+        <div class="line-seperator"></div>
+        <label class="upload-resume-div" (change)="uploadResume($event)" for="resume-input">
+            <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload" class="upload-svg">
+            <input type="file" class="resume-input" accept="application/pdf" id="resume-input">
+            <div class="upload-label">Upload Updated Resume</div>
+            <input class="file-name" placeholder="{{fileName}}" disabled>
+        </label>
+    </div>
+    <div *ngFor="let role of Job.jobRoles" class="roles-desc-div">
+        <app-roles-offered [role]="role"></app-roles-offered>
+    </div>
+</div>

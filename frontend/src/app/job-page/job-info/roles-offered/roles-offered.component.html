@@ -1,0 +1,13 @@
+<div class="role-desc">
+    <div class="role-desc-header" (click)="toggleExpansion()">
+        <div class="role-title">{{role.role.roleName}}</div>
+        <div class="expand-icon"><img src="../../../../assets/svgs/expand_less_black_24dp.svg" alt="expand"
+                class="rotated-image" [class.rotated]="!isNotExpanded"></div>
+    </div>
+    <div class="role-desc" [class.invisible]="!isNotExpanded" [class.visible]="isNotExpanded">
+        <div class="desc-title" *ngFor="let desc of role.jobRolesDescs; let last = last">
+            {{desc.descTitle}} : <div class="desc" >{{desc.description}}</div>
+            <div class="line-seperator" *ngIf="!last"></div>
+        </div>
+    </div>
+</div>

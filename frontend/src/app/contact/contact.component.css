@@ -1,0 +1,15 @@
+.contact {
+  justify-self: flex-end;
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: #1F7A54;
+}
+
+.pipe {
+  color: rgba(0, 0, 0, 0.1215686275);
+  margin: 0 5px;
+}/*# sourceMappingURL=contact.component.css.map */

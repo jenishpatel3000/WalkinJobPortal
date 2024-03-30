@@ -1,0 +1,18 @@
+@mixin flexcontainer($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+  text-align: center;
+}
+@mixin fontstyle($font-family, $size, $weight, $color, $opacity) {
+  font-family: $font-family, sans-serif;
+  font-size: $size;
+
+  font-weight: $weight;
+  color: $color;
+  opacity: $opacity;
+}
+.routeroutlet {
+  margin: 0;
+  padding: 0;
+}

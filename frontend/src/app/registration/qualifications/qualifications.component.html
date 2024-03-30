@@ -1,0 +1,194 @@
+<div class="edblueline">
+    <div class="edtitle">Educational Qualifications</div>
+    <img class="uparrow" src="/assets/svgs/chevron-up-solid.svg" alt="up arrow" />
+</div>
+<div class="Edqualifications">
+    <div class="data-div1">
+        <div *ngIf="validations.percentInvalid" class="error">Enter valid percentage</div>
+        <div class="label">Aggregate Percentage*</div>
+        <input type="number" class="text-input num" [(ngModel)]="userData.percentage"
+            (change)="updateUserData()">
+    </div>
+    <div class="data-div1">
+        <div *ngIf="validations.passingYearRequired" class="error">Select year of passing</div>
+        <div class="label">Year of Passing*</div>
+        <select required="true" class="customInput arrow" [(ngModel)]="userData.passingYear"
+            (change)="updateUserData()" name="state">
+            <option class="option" value={{year}} *ngFor="let year of yearsList">{{year}}</option>
+        </select>
+    </div>
+    <div class="data-container">
+        <div class="data-div">
+            <div *ngIf="validations.qualificationRequired" class="error">Select qualification</div>
+            <div class="label">Qualification*</div>
+            <select required="true" class="customInput customInput1 arrow" [(ngModel)]="userData.qualificationId"
+                (change)="updateUserData()" name="state">
+                <option class="option" *ngFor="let q of registrationData.qualification" value={{q.qualificationId}}>{{q.qualificationName}}</option>
+            </select>
+        </div>
+        <div class="data-div">
+            <div *ngIf="validations.streamRequired" class="error">Select stream</div>
+            <div class="label">Stream*</div>
+            <select required="true" class="customInput customInput1 arrow" [(ngModel)]="userData.streamId"
+                (change)="updateUserData()" name="state">
+                <option class="option" *ngFor="let stream of registrationData.stream" value={{stream.streamId}}>{{stream.streamName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="data-container">
+        <div class="data-div">
+            <div *ngIf="validations.collegeRequired" class="error">Select college</div>
+            <div class="label">College*</div>
+            <select required="true" class="customInput customInput1 arrow" [(ngModel)]="userData.collegeId"
+                (change)="updateUserData()" name="state">
+                <option class="option" *ngFor="let college of registrationData.college" value={{college.collegeId}}>{{college.collegeName}}</option>
+            </select>
+        </div>
+        <div class="data-div">
+            <div class="label">If others, please enter your college name</div>
+            <input type="text" class="text-input"  [(ngModel)]="userData.otherCollege" (change)="updateUserData()" />
+        </div>
+    </div>
+    <div class="data-div1">
+        <div *ngIf="validations.locationRequired" class="error">Enter location of college</div>
+        <div class="label">Where is your college located?*</div>
+        <input type="text" class="text-input"  [(ngModel)]="userData.otherCollegeLocation" (change)="updateUserData()" />
+    </div>
+</div>
+
+
+
+<div class="problueline">
+    <div class="protitle">Professional Qualifications</div>
+    <!-- <div class="verline">
+
+    </div> -->
+    <img class="uparrow" src="/assets/svgs/chevron-up-solid.svg" alt="up arrow" />
+    <!-- <img class="downarrow" src="/assets/svgs/chevron-down-solid.svg" alt="up arrow" /> -->
+</div>
+<div class="proqualifications1">
+    <div *ngIf="validations.applicationTypeRequired" class="error">Select application type</div>
+    <div class="label">Applicant Type*</div>
+    <label class="application-type">
+        <label for="1" *ngFor="let type of registrationData.applicationTypes" class="label1">
+            <input type="radio" class="radio Applicanttype1" #applicantTypeRadio name="Applicant" [value]="type.applicationTypeId" id="{{type.applicationTypeName}}" [(ngModel)]="userData.applicationTypeId"
+            (change)="handleApplicantTypeChange(applicantTypeRadio.id)" />{{type.applicationTypeName}}</label>
+    </label>
+</div>
+<div class="proqualifications">
+    <div class="data-div1">
+        <div *ngIf="validations.expInvalid" class="error">Enter valid years of experience</div>
+        <div class="label">Years of Experience*</div>
+        <input type="number" name="yearOfExp" class="text-input num"
+            [(ngModel)]="userData.expYear" (change)="updateUserData()" />
+    </div>
+    <div class="data-div1">
+        <div *ngIf="validations.currentCtcInvalid" class="error">Enter valid ctc without comma(',')</div>
+        <div class="label">Current CTC* (In Rupees)</div>
+        <input type="text" name="currentCTC" class="text-input"
+            [(ngModel)]="userData.currentCtc" (change)="updateUserData()" />
+    </div>
+    <div class="data-div1">
+        <div *ngIf="validations.expectedCtcInvalid" class="error">Enter valid ctc without comma(',')</div>
+        <div class="label">Expected CTC* (In Rupees)</div>
+        <input type="text" name="expectedCTC" class="text-input"
+            [(ngModel)]="userData.expectedCtc" (change)="updateUserData()" />
+    </div>
+
+    <div class="data-div">
+        <div *ngIf="validations.expertTechRequired" class="error">Select techs with your expertise</div>
+        <div class="label">Select All The Technologies You Expertise In*</div>
+        <div class="roles-options" *ngFor="let tech of registrationData.tech">
+            <input type="checkbox" name="js" id={{tech.techName}} class="roles-checkbox" (change)="toggleExpertiseTech(tech)" />
+            <label for={{tech.techName}} class="roles-label">{{tech.techName}}</label><br>
+        </div>
+    </div>
+    <div class="data-div">
+        <div class="label">If others, please mention</div>
+        <input type="text" name="inputTech" class="text-input" [(ngModel)]="userData.otherExpertTechs"
+             (change)="updateUserData()" />
+    </div>
+    <div class="data-div">
+        <div class="label">Select All The Technologies You Are Familiar In</div>
+        <div class="roles-options" *ngFor="let tech of registrationData.tech">
+            <input type="checkbox" name={{tech.techName}} id={{tech.techName}} class="roles-checkbox" (change)="toggleFamiliarTech(tech)" />
+            <label for={{tech.techName}} class="roles-label">{{tech.techName}}</label><br>
+        </div>
+    </div>
+    <div class="data-div">
+        <label for="inputTech2" class="label">If others, please mention</label>
+        <input type="text" id="inputTech2" class="text-input" [(ngModel)]="userData.otherFamiliarTechs"
+             (change)="updateUserData()" />
+    </div>
+    <div class="data-div nobottom">
+        <div *ngIf="validations.currentlyOnNoticeRequired" class="error">Select an option</div>
+        <div class="label">Are you currently on notice period?*</div>
+        <label class="application-type">
+            <input type="radio" class="radio" name="notice" value=1 [(ngModel)]="userData.currentlyOnNoticePeriod"
+                (change)="updateUserData()" />
+            <p class="type label1">Yes</p>
+            <input type="radio" class="radio" name="notice" value=0 [(ngModel)]="userData.currentlyOnNoticePeriod"
+                (change)="updateUserData()" />
+            <p class="type label2">No</p>
+        </label>
+    </div>
+
+    <div class="data-div">
+        <div *ngIf="validations.noticePeriodEndRequired" class="error">Select last date of notice period</div>
+        <label for="noticeperiod" class="label">If Yes, when will your notice period end?*</label>
+        <input type="date" id="noticeperiod" class="text-input"
+            [(ngModel)]="userData.noticeEnd" (change)="updateUserData()" />
+    </div>
+    <div class="data-div nobottom">
+        <div *ngIf="validations.givenZeusTestRequired" class="error">Select an option</div>
+        <div class="label">Have You Appeared For Any Test By Zeus in the past 12 months?*</div>
+        <label class="application-type">
+            <input type="radio" class="radio" name="test" value=1 [(ngModel)]="userData.appearedZeusTest"
+                (change)="updateUserData()" />
+            <p class="type label1">Yes</p>
+            <input type="radio" class="radio" name="test" value=0 [(ngModel)]="userData.appearedZeusTest"
+                (change)="updateUserData()" />
+            <p class="type label2">No</p>
+        </label>
+    </div>
+
+    <div class="data-div">
+        <label for="jobrole" class="label">If Yes, which role did you apply for?</label>
+        <input type="text" id="jobrole" class="text-input" [(ngModel)]="userData.zeusTestRole"
+            (change)="updateUserData()" />
+    </div>
+</div>
+
+<div class="fresherqualifications">
+
+    <div class="data-div">
+        <div class="label">Select All The Technologies You Are Familiar In</div>
+        <div class="roles-options" *ngFor="let tech of registrationData.tech">
+            <input type="checkbox" name={{tech.techName}} id={{tech.techName}} class="roles-checkbox" (change)="toggleFamiliarTech(tech)" />
+            <label for={{tech.techName}} class="roles-label">{{tech.techName}}</label><br>
+        </div>
+    </div>
+    <div class="data-div">
+        <label for="inputTech2" class="label">If others, please mention</label>
+        <input type="text" id="inputTech2" class="text-input" [(ngModel)]="userData.otherFamiliarTechs"
+            (change)="updateUserData()" />
+    </div>
+    <div class="data-div nobottom">
+        <div *ngIf="validations.locationRequired" class="error">Select an option</div>
+        <div class="label">Have You Appeared For Any Test By Zeus in the past 12 months?*</div>
+        <label class="application-type">
+            <input type="radio" class="radio" name="test2" value=1 [(ngModel)]="userData.appearedZeusTest"
+                (change)="updateUserData()" />
+            <p class="type label1">Yes</p>
+            <input type="radio" class="radio" name="test2" value=0 [(ngModel)]="userData.appearedZeusTest"
+                (change)="updateUserData()" />
+            <p class="type label2">No</p>
+        </label>
+    </div>
+
+    <div class="data-div">
+        <label for="jobrole" class="label">If Yes, which role did you apply for?</label>
+        <input type="text" id="jobrole" class="text-input" [(ngModel)]="userData.zeusTestRole"
+            (change)="updateUserData()" />
+    </div>
+</div>

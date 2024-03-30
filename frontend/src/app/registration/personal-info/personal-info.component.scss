@@ -1,0 +1,257 @@
+$bgcolor: #ffffff;
+$labelcolor: rgba(102, 102, 102, 0.8);
+$inputcolor: #222222;
+$accentcolor: #1f7a54;
+$nextbuttonbgcolor: #3fd28b;
+$nextbuttoncolor: #1f2834;
+$buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
+$borderbottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+$fontsize12: 1.2rem;
+$fontsize14: 1.4rem;
+$fontsize16: 1.6rem;
+$fontsize20: 2rem;
+$fontsize24: 2.4rem;
+
+.flex-class {
+  display: flex;
+  flex-direction: column;
+
+  .personal-info-div {
+    margin: 0 2.4rem 2.4rem 2.4rem;
+    padding: 2.4rem;
+    background-color: $bgcolor;
+    display: grid;
+    grid-template-columns: 480fr 450fr;
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: 1.1fr 1fr;
+    }
+    @media only screen and (max-width: 390px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    .personal-info {
+      .data-div {
+        margin-bottom: 4rem;
+
+        .label {
+          margin-left: 0.3rem;
+          color: $labelcolor;
+          text-decoration: Titlecase;
+          font-size: $fontsize12;
+        }
+
+        .text-input {
+          width: 100%;
+          text-align: left;
+          font-size: $fontsize16;
+          font-weight: 500;
+          padding-bottom: 0.4rem;
+          ::-webkit-input-placeholder {
+            color: $inputcolor;
+          }
+          :-moz-placeholder {
+            color: $inputcolor;
+            opacity: 1;
+          }
+          ::-moz-placeholder {
+            opacity: 1;
+            color: $inputcolor;
+          }
+          :-ms-input-placeholder {
+            color: $inputcolor;
+          }
+
+          ::placeholder {
+            color: $inputcolor;
+          }
+          border: none;
+          border-bottom: $borderbottom;
+          margin-top: 1.2rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
+        .number-div {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+        }
+        .plus {
+          font-size: $fontsize16;
+          align-items: center;
+        }
+        .code-input {
+          width: 2rem;
+          text-align: left;
+          font-size: $fontsize12;
+          color: $inputcolor;
+          border: none;
+          border-bottom: $borderbottom;
+          margin-top: 1.2rem;
+          margin-left: 0.8rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
+        .phone-input {
+          width: 9rem;
+          text-align: left;
+          font-size: $fontsize12;
+          color: $inputcolor;
+          border: none;
+          border-bottom: $borderbottom;
+          margin-top: 1.2rem;
+          margin-left: 0.8rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .roles-options {
+          display: flex;
+          align-items: center;
+          margin-top: 1.6rem;
+
+          .roles-checkbox {
+            width: 1.8rem;
+            height: 1.8rem;
+            margin-right: 0.8rem;
+            accent-color: $accentcolor;
+          }
+
+          .roles-label {
+            font-size: $fontsize16;
+          }
+        }
+      }
+
+      .upload-resume-div {
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+        &:focus {
+          outline: 2px solid $accentcolor;
+        }
+
+        .upload-svg {
+          width: 2rem;
+          height: 2.4rem;
+          margin-right: 0.8rem;
+        }
+
+        .resume-input {
+          display: none;
+        }
+
+        .upload-label {
+          letter-spacing: 0px;
+          color: $accentcolor;
+          text-transform: uppercase;
+          opacity: 1;
+          font-weight: 100;
+          color: $accentcolor;
+          font-size: $fontsize14;
+        }
+
+        .file-name {
+          height: 100%;
+          overflow: hidden;
+          color: $labelcolor;
+          font-size: $fontsize12;
+          margin-left: 0.8rem;
+          flex: 1;
+          border: none;
+          background-color: $bgcolor;
+        }
+      }
+
+      .sendmeupdates-div {
+        display: flex;
+        align-items: center;
+
+        .updates-checkbox {
+          width: 1.8rem;
+          height: 1.8rem;
+          margin-right: 0.8rem;
+          accent-color: $accentcolor;
+        }
+
+        .updates-label {
+          font-size: $fontsize16;
+        }
+      }
+    }
+
+    .photo-upload {
+      margin-left: auto;
+
+      .flex-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 18.6rem;
+        .profile-photo {
+          width: 11.2rem;
+          height: 11.2rem;
+          border-radius: 50%;
+          object-fit: cover;
+          overflow: hidden;
+        }
+
+        .photo-input-label {
+          cursor: pointer;
+          margin: 1.6rem 0 0.9rem 0;
+          font-size: $fontsize12;
+          letter-spacing: 0px;
+          color: $accentcolor;
+          opacity: 1;
+          .photo-input {
+            display: none;
+          }
+
+          .upload-label {
+            color: $accentcolor;
+            font-size: $fontsize12;
+            @media only screen and (max-width: 400px) {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .input-desc {
+          color: $labelcolor;
+          font-size: 1rem;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+  .next-button {
+    background-color: $nextbuttonbgcolor;
+    color: $nextbuttoncolor;
+    font-size: $fontsize14;
+    padding: 0.5rem 2.7rem;
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: $buttonshadow;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.2em);
+    }
+  }
+}
+
+.error{
+  color: red;
+}

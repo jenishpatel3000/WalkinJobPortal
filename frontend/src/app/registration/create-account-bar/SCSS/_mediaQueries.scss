@@ -1,0 +1,53 @@
+/* ... Your existing CSS rules ... */
+
+/* Mobile screens */
+@media only screen and (max-width: 800px) {
+  .create-account-bar {
+    font-size: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .create-account-bar {
+    font-size: 53%;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .create-account-bar {
+    font-size: 50%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .create-account-bar {
+    font-size: 45%;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  .create-account-bar {
+    font-size: 35%;
+  }
+}
+@media only screen and (max-width: 200px) {
+  .create-account-bar {
+    font-size: 30%;
+  }
+}
+
+@media only screen and (max-width: 170px) {
+  .create-account-bar {
+    font-size: 27%;
+  }
+}
+@media only screen and (max-width: 150px) {
+  .create-account-bar {
+    font-size: 23%;
+  }
+}
+
+@media only screen and (max-width: 130px) {
+  .create-account-bar {
+    font-size: 20%;
+  }
+}

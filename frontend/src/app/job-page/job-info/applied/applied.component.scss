@@ -1,0 +1,91 @@
+$greentick: #18be2e;
+$bgcolor: #ffffff;
+$labelcolor: #666666;
+$seperatorcolor: #6666663d;
+$inputcolor: #222222;
+$accentcolor: #1f7a54;
+$buttonbgcolor: #3fd28b;
+$buttoncolor: #1f2834;
+$buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
+$divshadow: 0rem 0.4rem 0.6rem #0000003d;
+$dropdowntitlecolor: #dbefff;
+$fontsize12: 1.2rem;
+$fontsize14: 1.4rem;
+$fontsize16: 1.6rem;
+$fontsize18: 1.8rem;
+$fontsize20: 2rem;
+$fontsize22: 2.2rem;
+$fontsize24: 2.4rem;
+.green-tick {
+  background-color: $greentick;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto;
+  transform: translateY(50%);
+  .tick {
+    width: 5.4rem;
+    height: 4.9rem;
+  }
+}
+
+.applied-div {
+  //   height: 50rem;
+  margin: 0 2.4rem 2.4rem 2.4rem;
+  padding: 2.4rem 1.6rem;
+  background-color: $bgcolor;
+  display: flex;
+  flex-direction: column;
+
+  .congratulations-message {
+    font-size: $fontsize18;
+    color: $inputcolor;
+    padding-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .line-seperator {
+    width: 100%;
+    background-color: $seperatorcolor;
+    height: 0.1rem;
+    margin: 1.6rem 0;
+  }
+
+  .date-time-div,
+  .venue-div,
+  .things-to-remember-div {
+    font-size: $fontsize12;
+    color: $labelcolor;
+
+    .date,
+    .time,
+    .venue,
+    .things-to-remember {
+      margin-top: 0.8rem;
+      font-size: $fontsize14;
+      color: $inputcolor;
+    }
+  }
+
+  .download-button {
+    color: $buttoncolor;
+    background-color: $buttonbgcolor;
+    padding: 0.5rem 1.6rem;
+    border: none;
+    box-shadow: $buttonshadow;
+    margin: 0 auto;
+    margin-top: 0.8rem;
+    font-size: $fontsize14;
+    border-radius: 0.2rem;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-2px);
+    }
+  }
+}

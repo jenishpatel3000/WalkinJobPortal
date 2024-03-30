@@ -1,0 +1,80 @@
+<div class="flex-class">
+    <div class="personal-info-div">
+        <div class="personal-info">
+            <div class="data-div">
+                <div *ngIf="validations.firstNameInalid" class="error">Enter valid first name with first capital letter</div>
+                <div class="label">First Name*</div>
+                <input type="text" class="text-input" placeholder="Enter First Name"
+                    [(ngModel)]="userData.firstName" (change)="updateUserData()">
+            </div>
+            <div class="data-div">
+                <div *ngIf="validations.lastNameInalid" class="error">Enter valid last name with first capital letter</div>
+                <div class="label">Last Name*</div>
+                <input type="text" class="text-input" placeholder="Enter Last Name" [(ngModel)]="userData.lastName"
+                    (change)="updateUserData()">
+            </div>
+            <div class="data-div">
+                <div *ngIf="validations.emailInalid" class="error">Enter valid email id</div>
+                <div class="label">Email*</div>
+                <input type="text" class="text-input" placeholder="Enter Email" [(ngModel)]="userData.email"
+                    (change)="updateUserData()">
+            </div>
+            <div class="data-div">
+                <div *ngIf="validations.countroCodeInvalid || validations.phonenoInvalid" class="error">Enter valid country code and phone number</div>
+                <div class="label">Phone Number*</div>
+                <div class="number-div">
+                    <div class="plus">+</div>
+                    <input type="tel" title="code" placeholder="" class="code-input"
+                        [(ngModel)]="userData.countrycode" (change)="updateUserData()" />
+                    <input type="tel" title="number" placeholder="" class="phone-input"
+                        [(ngModel)]="userData.phoneNo" (change)="updateUserData()" />
+                </div>
+            </div>
+            <div *ngIf="validations.resumeRequired" class="error">Upload resume</div>
+            <label class="data-div upload-resume-div" tabindex="0" (change)="uploadResume($event)" for="resume-input">
+                <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload" class="upload-svg">
+                <input type="file" class="resume-input" tabindex="1" accept="application/pdf" id="resume-input"
+                    (change)="updateUserData()" />
+                <div class="upload-label">Upload Resume</div>
+                <input class="file-name" placeholder="{{userData.resumeFileName}}" disabled />
+            </label>
+            <div class="data-div">
+                <div class="label">Enter Portfolio URL(if any)</div>
+                <input type="text" class="text-input" placeholder="Enter URL" [(ngModel)]="userData.portfolioUrl"
+                    (change)="updateUserData()">
+            </div>
+            <div class="data-div">
+                <div *ngIf="validations.rolesRequired" class="error">Select a preferred role</div>
+                <div class="label">Preferred Job Roles*</div>
+                <div class="roles-options" *ngFor="let role of roles">
+                    <input type="checkbox" id={{role.roleName}} class="roles-checkbox"
+                        (change)="toggleJobRole(role)" />
+                    <label for={{role.roleName}} class="roles-label">{{role.roleName}}</label><br>
+                </div>
+            </div>
+
+            <div class="data-div">
+                <div class="label">If You Are Registering Via A Referral, Please Mention Full Name Of The Employee Who
+                    Referred You</div>
+                <input type="text" title="Referral" placeholder="" class="text-input"
+                    [(ngModel)]="userData.referalEmpName" (change)="updateUserData()" />
+            </div>
+            <div class="sendmeupdates-div">
+                <input type="checkbox" id="sendmeupdates" class="updates-checkbox" [(ngModel)]="userData.sendMeUpdate"
+                    (change)="updateUserData()">
+                <label for="sendmeupdates" class="updates-label">Send me job related updates via mail</label>
+            </div>
+        </div>
+        <div class="photo-upload">
+            <div class="flex-div">
+                <img [src]=profilePhotoSrc alt="default-profile-photo" class="profile-photo">
+                <label for="photo-input" class="photo-input-label" (change)="uploadProfilePhoto($event)">
+                    <input type="file" class="photo-input" id="photo-input" (change)="updateUserData()"
+                        accept="image/jpeg,image/jpg,image/png" />
+                    <div class="upload-label">UPLOAD DISPLAY PICTURE</div>
+                </label>
+                <div class="input-desc">Max. image size: 5 MB</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+$createaccountbgcolor: #3c4e62;
+$titlecolor: #ffffff;
+$boxshadow: #0000003d;
+$buttoncolor: #1f2834;
+$buttonbgcolor: #3fd28b;
+$inactivebuttonbgcolor: #3fd28b3d;
+
+.create-account-bar {
+  // font-size: 1.6rem;
+  background-color: $createaccountbgcolor;
+  //   padding: 1rem 2.4rem;
+  height: 4.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-left: 2.8rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .create-account-title {
+    color: $titlecolor;
+    font-size: 1.6rem;
+    font-weight: normal;
+    // width: 15rem;
+    height: 2rem;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #ffffff;
+    text-transform: capitalize;
+    opacity: 1;
+    // margin-left: 16.8rem;
+    // margin-right: 22.2rem;
+    // justify-content: center;
+    // transform: translate(-50%, 0%);
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+  }
+  .create-account-button {
+    width: 9rem;
+    height: 2.8rem;
+    font-size: 1.4rem;
+    color: $buttoncolor;
+    background-color: $buttonbgcolor;
+    text-align: center;
+    justify-content: center;
+    box-shadow: 0rem 0.3rem 0.5rem $boxshadow;
+    border: none;
+    border-radius: 0.2rem;
+    opacity: 1;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.1rem);
+    }
+  }
+
+  .cancel-button {
+    margin-left: auto;
+  }
+  .create-button {
+    margin-left: 1.6rem;
+    margin-right: 2.4rem;
+  }
+
+  .active {
+    background: $buttonbgcolor 0% 0% no-repeat padding-box;
+  }
+
+  .inactive {
+    background: $inactivebuttonbgcolor 0% 0% no-repeat padding-box;
+  }
+  @import "./_mediaQueries.scss";
+}

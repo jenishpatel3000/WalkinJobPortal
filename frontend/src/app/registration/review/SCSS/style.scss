@@ -1,0 +1,1298 @@
+$bgcolor: #ffffff;
+$labelcolor: rgba(102, 102, 102, 0.8);
+$inputcolor: #222222;
+$accentcolor: #1f7a54;
+$nextbuttonbgcolor: #3fd28b;
+$nextbuttoncolor: #1f2834;
+$buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
+$fontsize12: 1.2rem;
+$fontsize14: 1.4rem;
+$fontsize16: 1.6rem;
+$fontsize20: 2rem;
+$fontsize24: 2.4rem;
+$mainfont: "Quicksand";
+.containerTitle {
+  margin: 2.4rem 2.4rem 2.4rem 2.4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .title {
+    font-size: $fontsize16;
+  }
+  .editcontainer {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    .penicon {
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-right: 0.9rem;
+    }
+    .editname {
+      text-align: left;
+      font-size: $fontsize16;
+      letter-spacing: 0.4px;
+      color: #1f7a54;
+      opacity: 1;
+    }
+  }
+}
+.text {
+  font-size: 1.6rem;
+  color: #222222;
+  text-align: left;
+  // width: 100%;
+  font-weight: 500;
+  margin-top: 1.2rem;
+  padding-bottom: 0.4rem;
+}
+.left {
+  margin-left: 0.8rem;
+}
+.bottom {
+  margin-bottom: 1.6rem;
+}
+.bottom2 {
+  margin-bottom: 1.2rem;
+}
+.flex-class {
+  display: flex;
+  flex-direction: column;
+
+  .personal-info-div {
+    margin: 0 2.4rem 2.4rem 2.4rem;
+    padding: 2.4rem;
+    background-color: $bgcolor;
+    display: grid;
+    grid-template-columns: 480fr 450fr;
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: 1.1fr 1fr;
+    }
+    @media only screen and (max-width: 390px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    .personal-info {
+      // height: 90rem;
+      .data-div {
+        margin-bottom: 4rem;
+
+        .label {
+          // width: 100%;
+          margin-left: 0.3rem;
+          color: $labelcolor;
+          text-decoration: Titlecase;
+          font-size: $fontsize12;
+        }
+
+        .text-input {
+          width: 100%;
+          text-align: left;
+          font-size: $fontsize16;
+          font-weight: 500;
+          padding-bottom: 0.4rem;
+          ::-webkit-input-placeholder {
+            color: $inputcolor;
+          }
+          :-moz-placeholder {
+            color: $inputcolor;
+            opacity: 1;
+          }
+          ::-moz-placeholder {
+            opacity: 1;
+            color: $inputcolor;
+          }
+          :-ms-input-placeholder {
+            color: $inputcolor;
+          }
+
+          ::placeholder {
+            color: $inputcolor;
+          }
+          border: none;
+          border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+          margin-top: 1.2rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
+        .number-div {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+        }
+        .plus {
+          font-size: $fontsize16;
+          align-items: center;
+        }
+        .code-input {
+          width: 2rem;
+          text-align: left;
+          font-size: $fontsize12;
+          color: $inputcolor;
+          border: none;
+          border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+          margin-top: 1.2rem;
+          margin-left: 0.8rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
+        .phone-input {
+          width: 9rem;
+          text-align: left;
+          font-size: $fontsize12;
+          color: $inputcolor;
+          border: none;
+          border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+          margin-top: 1.2rem;
+          margin-left: 0.8rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .roles-options {
+          display: flex;
+          align-items: center;
+          // margin-top: 1.6rem;
+
+          .roles-checkbox {
+            width: 1.8rem;
+            height: 1.8rem;
+            margin-right: 0.8rem;
+            accent-color: $accentcolor;
+          }
+
+          .roles-label {
+            font-size: $fontsize16;
+          }
+        }
+      }
+
+      .upload-resume-div {
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+        &:focus {
+          outline: 2px solid #1f7a54; /* Example outline style */
+        }
+
+        .upload-svg {
+          width: 2rem;
+          height: 2.4rem;
+          margin-right: 0.8rem;
+        }
+
+        .resume-input {
+          display: none;
+        }
+
+        .upload-label {
+          letter-spacing: 0px;
+          color: #1f7a54;
+          text-transform: uppercase;
+          opacity: 1;
+          font-weight: 100;
+          color: $accentcolor;
+          font-size: $fontsize14;
+        }
+
+        .file-name {
+          height: 100%;
+          overflow: hidden;
+          color: $labelcolor;
+          font-size: $fontsize12;
+          margin-left: 0.8rem;
+          flex: 1;
+          border: none;
+          background-color: $bgcolor;
+        }
+      }
+
+      .sendmeupdates-div {
+        display: flex;
+        align-items: center;
+
+        .updates-checkbox {
+          width: 1.8rem;
+          height: 1.8rem;
+          margin-right: 0.8rem;
+          accent-color: $accentcolor;
+        }
+        .updates-checkbox[disabled] {
+          pointer-events: none;
+          opacity: 1 !important;
+          /* Override default disabled styles */
+          filter: none !important;
+          -webkit-filter: none !important;
+          cursor: default !important;
+        }
+
+        .black {
+          // pointer-e vents: none;
+          accent-color: black;
+          // opacity: 1;
+        }
+        .updates-label {
+          font-size: $fontsize16;
+        }
+      }
+    }
+
+    .photo-upload {
+      margin-left: auto;
+
+      .flex-div {
+        // width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // width: 16rem;
+        height: 18.6rem;
+        .profile-photo {
+          width: 11.2rem;
+          height: 11.2rem;
+          border-radius: 50%;
+          object-fit: cover;
+          overflow: hidden;
+          // @media only screen and (max-width: 500px) {
+          //   width: 9rem;
+          //   height: 9rem;
+          // }
+          // @media only screen and (max-width: 450px) {
+          //   width: 7rem;
+          //   height: 7rem;
+          // }
+          // @media only screen and (max-width: 370px) {
+          //   width: 6rem;
+          //   height: 6rem;
+          // }
+        }
+
+        .photo-input-label {
+          cursor: pointer;
+          margin: 1.6rem 0 0.9rem 0;
+          font-size: $fontsize12;
+          letter-spacing: 0px;
+          color: #1f7a54;
+          opacity: 1;
+          .photo-input {
+            display: none;
+          }
+
+          .upload-label {
+            color: $accentcolor;
+            font-size: $fontsize12;
+            @media only screen and (max-width: 400px) {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .input-desc {
+          color: $labelcolor;
+          font-size: 1rem;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+  .next-button {
+    background-color: $nextbuttonbgcolor;
+    color: $nextbuttoncolor;
+    font-size: $fontsize14;
+    padding: 0.5rem 2.7rem;
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: $buttonshadow;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.2em);
+    }
+  }
+}
+.edblueline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dbefff;
+  margin: 0 2.4rem 0 2.4rem;
+  //   padding: 2.4rem;
+  // width: 97.6rem;
+  height: 5.6rem;
+  .edtitle {
+    font-size: 1.6rem;
+    margin-left: 1.6rem;
+  }
+  .verline {
+    // width: 0.1rem;
+    color: #1f7a54;
+    height: 5.6rem;
+    align-items: center;
+  }
+  .uparrow {
+    // align-items: center;
+    padding: 1.6rem 1rem;
+    // margin-right: 1rem;
+    width: 1.2rem;
+    height: 2.4rem;
+    text-align: left;
+    letter-spacing: -0.06rem;
+    color: #1f7a54;
+    opacity: 1;
+    border-left: 0.1rem solid rgba(51, 51, 51, 0.5);
+  }
+}
+.Edqualifications {
+  margin: 0 2.4rem 2.4rem 2.4rem;
+  padding: 2.4rem;
+  background-color: $bgcolor;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("/assets/quantum screen assets/quantum screen assets/icons/arrow-down.svg");
+    background-size: 3rem 2.5rem;
+    background-position: right;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    // padding-right: 2rem;
+  }
+  .customInput {
+    border: none;
+    border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+    margin-top: 1.2rem;
+    padding-bottom: 0.6rem;
+    width: 20rem;
+    // height: 2rem;
+    font-size: $fontsize16;
+    font-weight: 500;
+    // padding: 0;
+    margin-left: 0;
+    background-color: transparent;
+    // border: none;
+    text-align: left;
+    color: #222222;
+    opacity: 1;
+    letter-spacing: 0rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    .option {
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+  .customInput1 {
+    width: 95%;
+  }
+  .data-div {
+    margin-bottom: 4rem;
+
+    input[type="number"] {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; // Optional
+      }
+    }
+
+    .label {
+      // width: 100%;
+      margin-left: 0.3rem;
+      color: $labelcolor;
+      text-decoration: Titlecase;
+      font-size: $fontsize12;
+    }
+
+    .text-input {
+      width: 95%;
+      text-align: left;
+      font-size: $fontsize16;
+      font-weight: 500;
+      padding-bottom: 0.4rem;
+      ::-webkit-input-placeholder {
+        color: $inputcolor;
+      }
+      :-moz-placeholder {
+        color: $inputcolor;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        opacity: 1;
+        color: $inputcolor;
+      }
+      :-ms-input-placeholder {
+        color: $inputcolor;
+      }
+
+      ::placeholder {
+        color: $inputcolor;
+      }
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .number-div {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .plus {
+      font-size: $fontsize16;
+      align-items: center;
+    }
+    .code-input {
+      width: 2rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .phone-input {
+      width: 9rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .roles-options {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+
+      .roles-checkbox {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.8rem;
+        accent-color: $accentcolor;
+      }
+
+      .roles-label {
+        font-size: $fontsize16;
+      }
+    }
+  }
+  .data-div1 {
+    grid-column: 1/-1;
+    margin-bottom: 4rem;
+
+    .label {
+      width: 100%;
+      //   width: 19rem;
+      margin-left: 0.3rem;
+      color: $labelcolor;
+      text-decoration: Titlecase;
+      font-size: $fontsize12;
+    }
+
+    .text-input {
+      //   width: 100%;
+      text-align: left;
+      font-size: $fontsize16;
+      font-weight: 500;
+      padding-bottom: 0.4rem;
+      ::-webkit-input-placeholder {
+        color: $inputcolor;
+      }
+      :-moz-placeholder {
+        color: $inputcolor;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        opacity: 1;
+        color: $inputcolor;
+      }
+      :-ms-input-placeholder {
+        color: $inputcolor;
+      }
+
+      ::placeholder {
+        color: $inputcolor;
+      }
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .number-div {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .plus {
+      font-size: $fontsize16;
+      align-items: center;
+    }
+    .code-input {
+      width: 2rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .phone-input {
+      width: 9rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .roles-options {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+
+      .roles-checkbox {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.8rem;
+        accent-color: $accentcolor;
+      }
+
+      .roles-label {
+        font-size: $fontsize16;
+      }
+    }
+  }
+}
+
+@mixin flexcontainer($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+  text-align: center;
+}
+@mixin fontstyle($font-family, $size, $weight, $color, $opacity) {
+  font-family: $font-family, sans-serif;
+  font-size: $size;
+
+  font-weight: $weight;
+  color: $color;
+  opacity: $opacity;
+}
+.application-type {
+  @include fontstyle($mainfont, 1.6rem, 500, #333333, 1);
+  @include flexcontainer(left);
+  // justify-content: left;
+  align-items: center;
+  text-align: left;
+  letter-spacing: 0rem;
+  margin-top: 1.3rem;
+  height: 2rem;
+  padding: 0;
+  .radio {
+    margin: 0;
+    padding: 0;
+    width: 2rem;
+    height: 2.4rem;
+    margin-right: 0.8rem;
+    text-align: left;
+    font: normal normal normal 2.4rem/1.7rem "Material-Design-Iconic-Font";
+    letter-spacing: 0rem;
+    accent-color: #1f7a54;
+    opacity: 1;
+  }
+
+  .type {
+    margin: 0;
+    height: 2rem;
+    text-align: left;
+    @include fontstyle($mainfont, 1.6rem, 500, #333333, 1);
+    letter-spacing: 0rem;
+  }
+  .label1 {
+    padding-right: 2.4rem;
+    // width: 5.3rem;
+    height: 2rem;
+  }
+
+  .label2 {
+    // width: 17rem;
+  }
+}
+.problueline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dbefff;
+  margin: 0 2.4rem 0 2.4rem;
+  //   padding: 2.4rem;
+  // width: 97.6rem;
+  height: 5.6rem;
+  .protitle {
+    font-size: 1.6rem;
+    margin-left: 1.6rem;
+  }
+  .verline {
+    // width: 0.1rem;
+    color: #1f7a54;
+    height: 5.6rem;
+    align-items: center;
+  }
+  .uparrow {
+    // align-items: center;
+    padding: 1.6rem 1rem;
+    // margin-right: 1rem;
+    width: 1.2rem;
+    height: 2.4rem;
+    text-align: left;
+    letter-spacing: -0.06rem;
+    color: #1f7a54;
+    opacity: 1;
+    border-left: 0.1rem solid rgba(51, 51, 51, 0.5);
+  }
+  .downarrow {
+    // align-items: center;
+    padding: 1.6rem 1rem;
+    // margin-right: 1rem;
+    width: 1.2rem;
+    height: 2.4rem;
+    text-align: left;
+    letter-spacing: -0.06rem;
+    color: #1f7a54;
+    opacity: 1;
+    border-left: 0.1rem solid rgba(51, 51, 51, 0.5);
+  }
+}
+.proqualifications1 {
+  margin: 0 2.4rem 2.4rem 2.4rem;
+  padding: 2.4rem;
+  background-color: $bgcolor;
+  .label {
+    // width: 100%;
+    margin-left: 0.3rem;
+    color: $labelcolor;
+    text-decoration: Titlecase;
+    font-size: $fontsize12;
+  }
+  .application-type {
+    @include fontstyle($mainfont, 1.6rem, 500, #333333, 1);
+    @include flexcontainer(left);
+    // justify-content: left;
+    align-items: center;
+    text-align: left;
+    letter-spacing: 0rem;
+    margin-top: 1.3rem;
+    height: 2rem;
+    padding: 0;
+    .radio {
+      margin: 0;
+      padding: 0;
+      width: 2rem;
+      height: 2.4rem;
+      margin-right: 0.8rem;
+      text-align: left;
+      font: normal normal normal 2.4rem/1.7rem "Material-Design-Iconic-Font";
+      letter-spacing: 0rem;
+      accent-color: #1f7a54;
+      opacity: 1;
+    }
+
+    .type {
+      margin: 0;
+      height: 2rem;
+      text-align: left;
+      @include fontstyle($mainfont, 1.6rem, 500, #333333, 1);
+      letter-spacing: 0rem;
+    }
+    .label1 {
+      padding-right: 2.4rem;
+      width: 5.3rem;
+      height: 2rem;
+    }
+
+    .label2 {
+      width: 17rem;
+    }
+  }
+}
+.proqualifications {
+  margin: 0 2.4rem 2.4rem 2.4rem;
+  padding: 2.4rem;
+  background-color: $bgcolor;
+  display: grid;
+  // display: none;
+  grid-template-columns: 1fr 1fr;
+  .arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("/assets/quantum screen assets/quantum screen assets/icons/arrow-down.svg");
+    background-size: 3rem 2.5rem;
+    background-position: right;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    // padding-right: 2rem;
+  }
+  .customInput {
+    border: none;
+    border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+    margin-top: 1.2rem;
+    padding-bottom: 0.6rem;
+    width: 20rem;
+    // height: 2rem;
+    font-size: $fontsize16;
+    font-weight: 500;
+    // padding: 0;
+    margin-left: 0;
+    background-color: transparent;
+    // border: none;
+    text-align: left;
+    color: #222222;
+    opacity: 1;
+    letter-spacing: 0rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    .option {
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+  .customInput1 {
+    width: 95%;
+  }
+  .data-div {
+    grid-column: 1/-1;
+    margin-bottom: 4rem;
+
+    input[type="number"] {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; // Optional
+      }
+    }
+
+    .label {
+      // width: 100%;
+      display: block;
+      margin-left: 0.3rem;
+      color: $labelcolor;
+      text-decoration: Titlecase;
+      font-size: $fontsize12;
+    }
+
+    .text-input {
+      width: 45%;
+      text-align: left;
+      font-size: $fontsize16;
+      font-weight: 500;
+      padding-bottom: 0.4rem;
+      ::-webkit-input-placeholder {
+        color: $inputcolor;
+      }
+      :-moz-placeholder {
+        color: $inputcolor;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        opacity: 1;
+        color: $inputcolor;
+      }
+      :-ms-input-placeholder {
+        color: $inputcolor;
+      }
+
+      ::placeholder {
+        color: $inputcolor;
+      }
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .number-div {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .plus {
+      font-size: $fontsize16;
+      align-items: center;
+    }
+    .code-input {
+      width: 2rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .phone-input {
+      width: 9rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .roles-options {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+
+      .roles-checkbox {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.8rem;
+        accent-color: $accentcolor;
+      }
+
+      .roles-label {
+        font-size: $fontsize16;
+      }
+    }
+  }
+  .data-div1 {
+    grid-column: 1/-1;
+    margin-bottom: 4rem;
+
+    .label {
+      width: 100%;
+      //   width: 19rem;
+      margin-left: 0.3rem;
+      color: $labelcolor;
+      text-decoration: Titlecase;
+      font-size: $fontsize12;
+    }
+
+    .text-input {
+      //   width: 100%;
+      text-align: left;
+      font-size: $fontsize16;
+      font-weight: 500;
+      padding-bottom: 0.4rem;
+      ::-webkit-input-placeholder {
+        color: $inputcolor;
+      }
+      :-moz-placeholder {
+        color: $inputcolor;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        opacity: 1;
+        color: $inputcolor;
+      }
+      :-ms-input-placeholder {
+        color: $inputcolor;
+      }
+
+      ::placeholder {
+        color: $inputcolor;
+      }
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .number-div {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .plus {
+      font-size: $fontsize16;
+      align-items: center;
+    }
+    .code-input {
+      width: 2rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .phone-input {
+      width: 9rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .roles-options {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+
+      .roles-checkbox {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.8rem;
+        accent-color: $accentcolor;
+      }
+
+      .roles-label {
+        font-size: $fontsize16;
+      }
+    }
+  }
+  .nobottom {
+    margin-bottom: 1.6rem;
+  }
+}
+.fresherqualifications {
+  margin: 0 2.4rem 2.4rem 2.4rem;
+  padding: 2.4rem;
+  background-color: $bgcolor;
+  display: grid;
+  // display: none;
+  grid-template-columns: 1fr 1fr;
+  .arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("/assets/quantum screen assets/quantum screen assets/icons/arrow-down.svg");
+    background-size: 3rem 2.5rem;
+    background-position: right;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    // padding-right: 2rem;
+  }
+  .customInput {
+    border: none;
+    border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+    margin-top: 1.2rem;
+    padding-bottom: 0.6rem;
+    width: 20rem;
+    // height: 2rem;
+    font-size: $fontsize16;
+    font-weight: 500;
+    // padding: 0;
+    margin-left: 0;
+    background-color: transparent;
+    // border: none;
+    text-align: left;
+    color: #222222;
+    opacity: 1;
+    letter-spacing: 0rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    .option {
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+  .customInput1 {
+    width: 95%;
+  }
+  .data-div {
+    grid-column: 1/-1;
+    margin-bottom: 4rem;
+
+    input[type="number"] {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; // Optional
+      }
+    }
+
+    .label {
+      // width: 100%;
+      display: block;
+      margin-left: 0.3rem;
+      color: $labelcolor;
+      text-decoration: Titlecase;
+      font-size: $fontsize12;
+    }
+
+    .text-input {
+      width: 45%;
+      text-align: left;
+      font-size: $fontsize16;
+      font-weight: 500;
+      padding-bottom: 0.4rem;
+      ::-webkit-input-placeholder {
+        color: $inputcolor;
+      }
+      :-moz-placeholder {
+        color: $inputcolor;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        opacity: 1;
+        color: $inputcolor;
+      }
+      :-ms-input-placeholder {
+        color: $inputcolor;
+      }
+
+      ::placeholder {
+        color: $inputcolor;
+      }
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .number-div {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .plus {
+      font-size: $fontsize16;
+      align-items: center;
+    }
+    .code-input {
+      width: 2rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .phone-input {
+      width: 9rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .roles-options {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+
+      .roles-checkbox {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.8rem;
+        accent-color: $accentcolor;
+      }
+
+      .roles-label {
+        font-size: $fontsize16;
+      }
+    }
+  }
+  .data-div1 {
+    grid-column: 1/-1;
+    margin-bottom: 4rem;
+
+    .label {
+      // width: 100%;
+      //   width: 19rem;
+      margin-left: 0.3rem;
+      color: $labelcolor;
+      text-decoration: Titlecase;
+      font-size: $fontsize12;
+    }
+
+    .text-input {
+      //   width: 100%;
+      text-align: left;
+      font-size: $fontsize16;
+      font-weight: 500;
+      padding-bottom: 0.4rem;
+      ::-webkit-input-placeholder {
+        color: $inputcolor;
+      }
+      :-moz-placeholder {
+        color: $inputcolor;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        opacity: 1;
+        color: $inputcolor;
+      }
+      :-ms-input-placeholder {
+        color: $inputcolor;
+      }
+
+      ::placeholder {
+        color: $inputcolor;
+      }
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .number-div {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .plus {
+      font-size: $fontsize16;
+      align-items: center;
+    }
+    .code-input {
+      width: 2rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .phone-input {
+      width: 9rem;
+      text-align: left;
+      font-size: $fontsize12;
+      color: $inputcolor;
+      border: none;
+      border-bottom: 0.2rem solid rgba(102, 102, 102, 0.2);
+      margin-top: 1.2rem;
+      margin-left: 0.8rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .roles-options {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+
+      .roles-checkbox {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.8rem;
+        accent-color: $accentcolor;
+      }
+
+      .roles-label {
+        font-size: $fontsize16;
+      }
+    }
+  }
+  .nobottom {
+    margin-bottom: 1.6rem;
+  }
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .next-button {
+    background-color: $nextbuttonbgcolor;
+    color: $nextbuttoncolor;
+    font-size: $fontsize14;
+    padding: 0.5rem 1.6rem;
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: $buttonshadow;
+    margin-bottom: 3rem;
+    margin-right: 1.6rem;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.2em);
+    }
+  }
+}

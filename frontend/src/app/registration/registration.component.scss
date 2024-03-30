@@ -1,0 +1,24 @@
+$nextbuttonbgcolor: #3fd28b;
+$nextbuttoncolor: #1f2834;
+$buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .next-button {
+    background-color: $nextbuttonbgcolor;
+    color: $nextbuttoncolor;
+    font-size: 1.4rem;
+    padding: 0.5rem 1.6rem;
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: $buttonshadow;
+    margin-bottom: 3rem;
+    margin-right: 1.6rem;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.2em);
+    }
+  }
+}

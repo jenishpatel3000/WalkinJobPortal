@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinder-like Swipe</title>
+    
+</head>
+
+<body>
+    <div class="container"  (mousedown)="handleMouseDown($event)"
+    (mouseup)="handleMouseUp()"
+    (mousemove)="handleMouseMove($event)" >
+
+
+        <button class="red" (click)="rejectCard()"> Reject
+        </button>
+
+        <div class="card">
+            
+            <div class="firstcontainer">
+                <div class="profile-photo">
+                    <img [src]=profilePic  alt="Profile Photo">
+                </div>
+                <div class="infocontainer">
+
+                    <div class="profile-name">{{ applications[currentIndex]?.name }}</div>
+                    <div class="profile-info">
+                        <div class="info1">
+                            <label>Email: </label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.email }}
+                            </div>
+                        </div>
+                        <div class="info1">
+                            <label>Mobile no.:</label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.mobileNo }}
+                            </div>
+                        </div>
+                        <div class="info1">
+                            <label>Qualification: </label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.qualificationName }}
+                            </div>
+                        </div>
+                        <div class="info1">
+                            <label>Stream:</label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.streamName }}
+                            </div>
+                        </div>
+                        <div class="info1">
+                            <label>College:</label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.collegeName }}
+                            </div>
+                        </div>
+                        <div class="info1">
+                            <label>Year of Passing:</label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.passingYear }}
+                            </div>
+                        </div>
+                        <div class="info1">
+                            <label>Aggregate Percentage:</label>
+                            <div class="Degree">
+                                {{ applications[currentIndex]?.percentage }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ThirdContainer">
+
+                <div class="profile-roles">
+                    <label>Applied Roles: </label>
+                    <!-- <div *ngFor="let tech of applications[currentIndex]?.roleNames" class="data">{{ tech }}</div> -->
+                    <ng-container *ngFor="let role of applications[currentIndex]?.roleNames; let last = last">
+                        <div class="listoption">{{ role }}</div>
+                        <span *ngIf="!last">, </span>
+                    </ng-container>
+                    <!-- <div class="listoption"> Software Developer</div>
+                    ,
+                    <div class="listoption"> Quality Engineer</div>
+                    ,
+                    <div class="listoption"> Quality Engineer</div>
+                    ,
+                    <div class="listoption"> Quality Engineer</div> -->
+                    <!-- Add more roles as needed -->
+
+                </div>
+
+            </div>
+            <div class="secondcontainer">
+
+
+
+                <div class="ApplicationData">
+                    <label>Familiar Technology:</label>
+                    <ng-container *ngFor="let tech of applications[currentIndex]?.technologyNames; let last = last">
+                        <div class="data">{{ tech }}</div>
+                        <span *ngIf="!last">, </span>
+                    </ng-container>
+                    <!-- <div class="data">
+                        <div *ngFor="let tech of applications[currentIndex]?.technologyNames" class="data">{{ tech }}</div>
+                    </div> -->
+                </div>
+                <div class="ApplicationData">
+                    <label>Expected CTC:</label>
+                    <div class="data">
+                        {{ applications[currentIndex]?.expectedCtc}}
+                    </div>
+                </div>
+                <div class="ApplicationData">
+                    <label>Application Number:</label>
+                    <div class="data">
+                        ABC123456
+                    </div>
+                </div>
+                <div class="ApplicationData">
+                    <label>Timeslot:</label>
+                    <div class="data">
+                        {{ applications[currentIndex]?.timeSlot }}
+                    </div>
+                </div>
+                <div class="ApplicationData">
+                    <label>Applicant Type:</label>
+                    <div class="data">{{ applications[currentIndex]?.applicationTypeName
+                    }}
+                    </div>
+                </div>
+            </div>
+            <div class="buttonContainer">
+                <button class="resumebtn">
+                    <p>ViewResume</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+
+            </div>
+        </div>
+        <button class="green" (click)="acceptCard()"> Accept
+        </button>
+    </div>
+
+   
+</body>
+
+</html>

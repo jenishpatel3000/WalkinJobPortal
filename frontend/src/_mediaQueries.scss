@@ -1,0 +1,84 @@
+/* ... Your existing CSS rules ... */
+
+/* Mobile screens */
+//
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 60%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 56%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 53%;
+  }
+}
+@media only screen and (max-width: 520px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  html {
+    font-size: 40%;
+  }
+}
+@media only screen and (max-width: 307px) {
+  html {
+    font-size: 37%;
+  }
+}
+
+@media only screen and (max-width: 285px) {
+  html {
+    font-size: 35%;
+  }
+}
+@media only screen and (max-width: 265px) {
+  html {
+    font-size: 31%;
+  }
+}
+@media only screen and (max-width: 250px) {
+  html {
+    font-size: 28%;
+  }
+}
+@media only screen and (max-width: 220px) {
+  html {
+    font-size: 24%;
+  }
+}
+
+@media only screen and (max-width: 200px) {
+  html {
+    font-size: 20%;
+  }
+}
+@media only screen and (max-width: 165px) {
+  html {
+    font-size: 17%;
+  }
+}
+
+@media only screen and (max-width: 130px) {
+  html {
+    font-size: 12%;
+  }
+}
+@media only screen and (max-width: 90px) {
+  html {
+    font-size: 8%;
+  }
+}

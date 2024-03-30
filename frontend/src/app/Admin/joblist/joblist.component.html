@@ -1,0 +1,36 @@
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">JobName</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Venue</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        
+     
+        <tr *ngFor="let job of jobs; let i = index"  >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ job.jobName }}</td>
+            <td>{{ job.fromTime }}</td>
+            <td>{{ job.toTime }}</td>
+            <td>{{ job.venue }}</td>
+            <td class="buttonContainer">
+                <button type="button" class="next-button" [routerLink]="['/edit-job', job.jobId]" >Edit</button>
+                <button type="button" class="delete" (click)=" DeleteUserByID(job.jobId)" >Delete</button>
+            
+            </td>
+          
+        <!-- <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td> -->
+      </tr>
+    
+    </tbody>
+  </table>

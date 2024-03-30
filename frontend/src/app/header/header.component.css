@@ -1,0 +1,26 @@
+.navbar {
+  background: transparent url("/assets/quantum screen assets/quantum screen assets/header pattern image.png");
+  background-color: #25313f;
+  background-blend-mode: overlay;
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.navbar .header_logo {
+  opacity: 1;
+  top: 1.1rem;
+  padding-left: 2.4rem;
+  width: auto;
+  height: 3.6rem;
+  opacity: 1;
+  margin: 0;
+}
+
+.blueline1 {
+  width: auto;
+  height: 0.2rem;
+  background: #31b9e4 0% 0% no-repeat padding-box;
+  opacity: 1;
+}/*# sourceMappingURL=header.component.css.map */

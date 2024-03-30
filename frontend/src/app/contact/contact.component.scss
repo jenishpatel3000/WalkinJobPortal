@@ -1,0 +1,19 @@
+$inputcolor: #1F7A54;
+$pipe: #0000001F;
+$fontsize14: 14px;
+
+.contact {
+    justify-self: flex-end;
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 40px;
+    font-size: $fontsize14;
+    color: $inputcolor;
+}
+
+.pipe {
+    color: $pipe;
+    margin: 0 5px;
+}

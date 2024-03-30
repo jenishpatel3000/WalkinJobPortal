@@ -1,0 +1,25 @@
+<div class="green-tick">
+    <img src="./assets/svgs/check.svg" alt="tick" class="tick">
+</div>
+<div class="applied-div" *ngIf="application">
+    <div class="congratulations-message">Congratulations ! You have successfully applied for the walk-in opportunity
+    </div>
+    <div class="line-seperator"></div>
+    <div class="date-time-div">
+        Date & Time of Walk-In :
+        <div class="date">{{formatdate(application.job.date)}}</div>
+        <div class="time">{{convertTo12HourFormat(application.slot.fromTime)}} to {{convertTo12HourFormat(application.slot.toTime)}}</div>
+    </div>
+    <div class="line-seperator"></div>
+    <div class="venue-div">
+        Venue of Walk-In :
+        <div class="venue">{{application.job.venue}}</div>
+    </div>
+    <div class="line-seperator"></div>
+    <div class="things-to-remember-div">
+        THINGS TO REMEMBER :
+        <div class="things-to-remember">{{application.job.thingsToRemember}}</div>
+    </div>
+    <div class="line-seperator"></div>
+    <button class="download-button" (click)="downloadHallTicket()">DOWNLOAD HALL TICKET</button>
+</div>

@@ -1,0 +1,166 @@
+$bgcolor: #ffffff;
+$labelcolor: rgba(102, 102, 102, 0.8);
+$inputcolor: #222222;
+$accentcolor: #1f7a54;
+$nextbuttonbgcolor: #3fd28b;
+$nextbuttoncolor: #1f2834;
+$buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
+$fontsize12: 1.2rem;
+$fontsize14: 1.4rem;
+$fontsize16: 1.6rem;
+$fontsize20: 2rem;
+$fontsize24: 2.4rem;
+$mainfont: "Quicksand";
+@import url(https://db.onlinewebfonts.com/c/16697a764b01cdcc691b05f001046bc3?family=MuseoSans-500);
+.JobContainer {
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: #0000003d 0 0.4rem 0.6rem;
+  // height: 24.4rem;
+  display: flex;
+  margin: 2.4rem;
+  padding: 1.6rem;
+  flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  .JobTitle {
+    flex-wrap: wrap;
+    font-size: 1.8rem;
+    color: #1f7a54;
+    text-align: left;
+  }
+  .JobDateLocationContainer {
+    margin-top: 1.6rem;
+    // width: 26.1rem;
+    // height: 4.1rem;
+    .JobDateLabel {
+      font-size: 1.2rem;
+      color: #666666;
+    }
+    .JobDate {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .JobDateTime {
+        font-size: 1.4rem;
+        color: #222222;
+      }
+      .verticalline {
+        margin-left: 1.6rem;
+        margin-right: 1.6rem;
+        width: 0.1rem;
+        align-items: center;
+        height: 1.2rem;
+        opacity: 12%;
+        background-color: #666666;
+      }
+      .JobLocation {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .locimg {
+          width: 1.3rem;
+          height: 1.3rem;
+          margin-right: 0.733rem;
+        }
+        .locationname {
+          font-size: 1.2rem;
+          color: #666666;
+        }
+      }
+    }
+  }
+  .DividingLine {
+    background-color: #000000;
+    opacity: 12%;
+    height: 0.1rem;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+    align-items: center;
+  }
+  .JobRoleContainer {
+    .JobRoleLabel {
+      font-size: 1.2rem;
+      color: #666666;
+    }
+    .RoleContainer {
+      display: flex;
+      flex-direction: row;
+      // align-items: center;
+      @media only screen and (max-width: 600px) {
+        flex-direction: column;
+      }
+      .JobRole {
+        margin-top: 0.8rem;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        .JobRoleImage {
+          margin-right: 0.8rem;
+          height: 2.4rem;
+          width: 2.4rem;
+        }
+        .JobRoleName {
+          font-size: 1.4rem;
+          color: #222222;
+        }
+        .verticalline2 {
+          margin-left: 0.8rem;
+          margin-right: 0.8rem;
+          width: 0.1rem;
+          align-items: center;
+          height: 1.2rem;
+          opacity: 20%;
+          background-color: #666666;
+          @media only screen and (max-width: 600px) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .JobSpecialMessage {
+    margin-top: 1.6rem;
+    width: 21.8rem;
+    border-radius: 0.9rem;
+    padding: 0.3rem 0rem 0.3rem 0rem;
+    background-color: #eedd6b;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .buttonContainer {
+    margin-top: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .viewbtn {
+      cursor: pointer;
+      background-color: #3fd28b;
+      // height: 2.8rem;
+
+      // width: 16.8rem;
+      padding: 0.5rem 1.6rem 0.5rem 1.6rem;
+      font-size: 1.4rem;
+      color: #25313f;
+      border: none;
+      border-radius: 0.2rem;
+      box-shadow: #0000003d 0 0.3rem 0.5rem;
+    }
+  }
+  .expireDate {
+    position: absolute;
+    top: -1rem;
+    right: 2.4rem;
+    background-color: #ffe4e6;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    font-family: "MuseoSans-500";
+    color: #d10107;
+    z-index: 1;
+    padding: 0.2rem 0.8rem 0.2rem 0.8rem;
+  }
+}

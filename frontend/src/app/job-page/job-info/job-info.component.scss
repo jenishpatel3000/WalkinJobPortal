@@ -1,0 +1,358 @@
+$bgcolor: #ffffff;
+$black: #000000;
+$labelcolor: #666666;
+$seperatorcolor: #6666663d;
+$inputcolor: #222222;
+$accentcolor: #1f7a54;
+$buttonbgcolor: #3fd28b;
+$buttoncolor: #25313f;
+$buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
+$divshadow: 0rem 0.4rem 0.6rem #0000003d;
+$dropdowntitlecolor: #dbefff;
+$specialmessbgcolor: #eedd6b;
+$expbgcolor: #ffe4e6;
+$expcolor: #d10107;
+$fontsize10: 1rem;
+$fontsize12: 1.2rem;
+$fontsize14: 1.4rem;
+$fontsize16: 1.6rem;
+$fontsize20: 2rem;
+$fontsize22: 2.2rem;
+$fontsize24: 2.4rem;
+
+@import url(https://db.onlinewebfonts.com/c/16697a764b01cdcc691b05f001046bc3?family=MuseoSans-500);
+
+.job-info-container {
+
+  .JobContainer {
+    position: relative;
+    background-color: $bgcolor;
+    display: flex;
+    margin: 2.4rem;
+    margin-bottom: 0;
+    padding: 1.6rem;
+    flex-direction: column;
+
+    .JobTitle {
+      flex-wrap: wrap;
+      font-size: $fontsize22;
+      color: $inputcolor;
+      text-align: left;
+    }
+
+    .JobDateLocationContainer {
+      margin-top: 1.6rem;
+
+      .JobDateLabel {
+        font-size: 1.2rem;
+        color: $labelcolor;
+      }
+
+      .JobDate {
+        margin-top: 0.8rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .JobDateTime {
+          font-size: 1.4rem;
+          color: $inputcolor;
+        }
+
+        .verticalline {
+          margin-left: 1.6rem;
+          margin-right: 1.6rem;
+          width: 0.1rem;
+          align-items: center;
+          height: 1.2rem;
+          opacity: 12%;
+          background-color: $labelcolor;
+        }
+
+        .JobLocation {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .locimg {
+            width: 1.3rem;
+            height: 1.3rem;
+            margin-right: 0.733rem;
+          }
+
+          .locationname {
+            font-size: 1.2rem;
+            color: $labelcolor;
+          }
+        }
+      }
+    }
+
+    .DividingLine {
+      background-color: $black;
+      opacity: 12%;
+      height: 0.1rem;
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 1.6rem;
+      margin-bottom: 1.6rem;
+      align-items: center;
+    }
+
+    .JobRoleContainer {
+      .JobRoleLabel {
+        font-size: 1.2rem;
+        color: $labelcolor;
+      }
+
+      .RoleContainer {
+        display: flex;
+        flex-direction: row;
+
+        // align-items: center;
+        @media only screen and (max-width: 600px) {
+          flex-direction: column;
+        }
+
+        .JobRole {
+          margin-top: 0.8rem;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+
+          .JobRoleImage {
+            margin-right: 0.8rem;
+            height: 2.4rem;
+            width: 2.4rem;
+          }
+
+          .JobRoleName {
+            font-size: $fontsize14;
+            color: $accentcolor;
+          }
+
+          .verticalline2 {
+            margin-left: 0.8rem;
+            margin-right: 0.8rem;
+            width: 0.1rem;
+            align-items: center;
+            height: 1.2rem;
+            opacity: 20%;
+            background-color: $labelcolor;
+
+            @media only screen and (max-width: 600px) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .JobSpecialMessage {
+      margin-top: 1.6rem;
+      width: 21.8rem;
+      border-radius: 0.9rem;
+      padding: 0.3rem 0rem 0.3rem 0rem;
+      background-color: $specialmessbgcolor;
+      font-size: $fontsize10;
+      text-align: center;
+    }
+
+    .apply-button {
+      position: absolute;
+      top: 1.6rem;
+      cursor: pointer;
+      right: 1.6rem;
+      background-color: $buttonbgcolor;
+      font-size: 1.4rem;
+      padding: 0.5rem 1.6rem 0.5rem 1.6rem;
+      border: none;
+      border-radius: 0.2rem;
+      box-shadow: $buttonshadow;
+    }
+
+    .expireDate {
+      position: absolute;
+      top: -1rem;
+      right: 2.4rem;
+      background-color: $expbgcolor;
+      border: none;
+      border-radius: 0.2rem;
+      font-size: 1.2rem;
+      font-family: "MuseoSans-500";
+      color: $expcolor;
+      z-index: 1;
+      padding: 0.2rem 0.8rem 0.2rem 0.8rem;
+    }
+  }
+
+  .pre-requisite-div {
+    background-color: $bgcolor;
+    margin: 0 2.4rem 2.4rem 2.4rem;
+    box-shadow: $divshadow;
+
+    .pre-req-header {
+      background-color: $dropdowntitlecolor;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .pre-req-title {
+        font-size: $fontsize16;
+        padding: 1rem 1.6rem;
+      }
+
+      .expand-icon {
+        margin-left: auto;
+        border-left: 0.1rem solid $seperatorcolor;
+        display: flex;
+        padding: 0.8rem 0.6rem;
+
+        .rotated-image {
+          transition: transform 0.5s ease;
+        }
+
+        .rotated {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .job-pre-requisite {
+      margin: 0 2.4rem 2.4rem 2.4rem;
+      overflow: hidden;
+      height: 0;
+
+      .desc-title {
+        font-size: $fontsize12;
+        color: $labelcolor;
+        margin-top: 1.6rem;
+
+        .desc {
+          font-size: $fontsize14;
+          color: $inputcolor;
+          margin: 1.6rem 0;
+        }
+
+        .line-seperator {
+          width: 100%;
+          background-color: $seperatorcolor;
+          height: 0.1rem;
+        }
+      }
+    }
+
+    .invisible {
+      transition: all 0.5s ease;
+    }
+
+    .invisible {
+      height: auto;
+    }
+  }
+
+  .preference-div {
+    background-color: $bgcolor;
+    margin: 0 2.4rem;
+    padding: 1.6rem;
+    box-shadow: $divshadow;
+  
+    .preference-title {
+      color: $inputcolor;
+      font-size: $fontsize16;
+      margin-bottom: 2.4rem;
+    }
+  
+    .time-slots-div {
+      color: $labelcolor;
+      font-size: $fontsize12;
+      margin-bottom: 1.6rem;
+  
+      .slot {
+        color: $inputcolor;
+        font-size: $fontsize16;
+        display: flex;
+        align-items: center;
+        margin-top: 1.6rem;
+  
+        .slot-input {
+          accent-color: $accentcolor;
+          width: 2rem;
+          height: 2rem;
+          margin-right: 0.8rem;
+        }
+      }
+    }
+  
+    .line-seperator {
+      width: 100%;
+      background-color: $seperatorcolor;
+      height: 0.1rem;
+    }
+  
+    .roles-div {
+      margin-top: 1.6rem;
+      margin-bottom: 1.6rem;
+      color: $labelcolor;
+      font-size: $fontsize12;
+  
+      .role {
+        color: $inputcolor;
+        font-size: $fontsize16;
+        display: flex;
+        align-items: center;
+        margin-top: 1.6rem;
+  
+        .role-input {
+          accent-color: $accentcolor;
+          width: 2rem;
+          height: 2rem;
+          margin-right: 0.8rem;
+        }
+      }
+    }
+  
+    .upload-resume-div {
+      display: flex;
+      align-items: center;
+      margin-top: 1.6rem;
+  
+      &:hover {
+        cursor: pointer;
+      }
+  
+      .upload-svg {
+        margin-right: 0.8rem;
+      }
+  
+      .upload-label {
+        color: $accentcolor;
+        font-size: $fontsize14;
+        text-transform: uppercase;
+      }
+  
+      .file-name {
+        height: 100%;
+        overflow: hidden;
+        color: $labelcolor;
+        font-size: $fontsize12;
+        margin-left: 0.8rem;
+        flex: 1;
+        border: none;
+        background-color: $bgcolor;
+      }
+    }
+  
+    .resume-input {
+      display: none;
+    }
+  }
+
+  .roles-desc-div {
+    margin: 2.4rem 2.4rem 2.4rem 2.4rem;
+  } 
+}
+
+.error{
+  color: red;
+}
