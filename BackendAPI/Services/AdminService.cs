@@ -10,9 +10,9 @@ namespace BackendAPI.Services
 {
     public class AdminService:IAdminService
     {
-        private readonly walkin_portalContext _context;
+        private readonly walkinportalContext _context;
         private readonly MailSettings _mailSettings;
-        public AdminService(walkin_portalContext context, IOptions<MailSettings> mailSettings)
+        public AdminService(walkinportalContext context, IOptions<MailSettings> mailSettings)
         {
             _context = context;
             _mailSettings = mailSettings.Value;
@@ -26,14 +26,11 @@ namespace BackendAPI.Services
                 return null;
             }
 
-            // Mapping User entity to UserDTO (you can use AutoMapper if preferred)
             var userDto = new LoginRequest
             {
                 username = user.Email,
                 password = user.Password,
                 rememberMe = RememberMe
-
-                // Add other properties as needed
             };
 
             return userDto;

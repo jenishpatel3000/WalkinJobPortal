@@ -60,20 +60,24 @@ export class LoginComponent implements OnInit {
             return throwError(error);
           })
         )
-        .subscribe((data:LoginResponse) => {
-          
+        .subscribe((data: LoginResponse) => {
+
 
           console.log(data)
           this.setToken(data.token);
+          this.setAdminId(data.adminId);
           this.router.navigate(['admin/job-list']);
         });
     }
-    
-    
+
+
   }
-  setToken(token:string)
-  {
-    localStorage.setItem("access_token",token)
+  setToken(token: string) {
+    localStorage.setItem("access_token", token)
+  }
+
+  setAdminId(userId: string) {
+    localStorage.setItem("adminId", userId)
   }
 
   onRememberMeChange(event: Event): void {

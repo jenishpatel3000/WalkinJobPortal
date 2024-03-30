@@ -17,9 +17,9 @@ namespace BackendAPI.Services
 {
     public class UserService:IUserService
     {
-        private readonly walkin_portalContext _context;
+        private readonly walkinportalContext _context;
         private readonly IEmailService _emailService;
-        public UserService(walkin_portalContext context)
+        public UserService(walkinportalContext context)
         {
             _context = context;
             _emailService = new EmailService();
@@ -355,7 +355,6 @@ namespace BackendAPI.Services
                     ""password"": ""{user.Password}""
                 }}
             }}";
-            //await _emailService.SendTransactionalEmailAsync(jsonBody);
             Userasset userasset = new Userasset
             {
                 UserId = user.UserId,

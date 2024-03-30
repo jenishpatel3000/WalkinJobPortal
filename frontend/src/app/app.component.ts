@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  hasUserId(): boolean {
+    return window.localStorage.getItem('userId') !== null;
+  }
+
+  hasAdminId(): boolean {
+    return window.localStorage.getItem('adminId') !== null;
+  }
 }

@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BackendAPI.Models
 {
-    public partial class walkin_portalContext : DbContext
+    public partial class walkinportalContext : DbContext
     {
-        public walkin_portalContext()
+        public walkinportalContext()
         {
         }
 
-        public walkin_portalContext(DbContextOptions<walkin_portalContext> options)
+        public walkinportalContext(DbContextOptions<walkinportalContext> options)
             : base(options)
         {
         }
@@ -46,7 +46,7 @@ namespace BackendAPI.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySQL("server=localhost;port=3307;user=root;password=Rachit@15;database=walkin_portal");
+                optionsBuilder.UseMySQL("server=localhost;user=root;password=user1;database=walk-in-portal");
             }
         }
 
@@ -256,9 +256,13 @@ namespace BackendAPI.Models
                     .HasColumnName("dt_modified")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                entity.Property(e => e.OtherCollege).HasMaxLength(255);
+                entity.Property(e => e.OtherCollege)
+                    .HasMaxLength(255)
+                    .HasColumnName("other_college");
 
-                entity.Property(e => e.OtherCollegeLocation).HasMaxLength(255);
+                entity.Property(e => e.OtherCollegeLocation)
+                    .HasMaxLength(45)
+                    .HasColumnName("other_college_location");
 
                 entity.Property(e => e.PassingYear)
                     .HasColumnType("year")
@@ -572,9 +576,13 @@ namespace BackendAPI.Models
 
                 entity.Property(e => e.NoticePeriodLength).HasColumnName("notice_period_length");
 
-                entity.Property(e => e.OtherExpertTechs).HasMaxLength(255);
+                entity.Property(e => e.OtherExpertTechs)
+                    .HasMaxLength(255)
+                    .HasColumnName("other_expert_techs");
 
-                entity.Property(e => e.OtherFamiliarTechs).HasMaxLength(255);
+                entity.Property(e => e.OtherFamiliarTechs)
+                    .HasMaxLength(255)
+                    .HasColumnName("other_familiar_techs");
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 

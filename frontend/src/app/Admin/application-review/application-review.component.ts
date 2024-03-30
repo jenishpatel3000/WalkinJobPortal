@@ -15,7 +15,11 @@ export class ApplicationReviewComponent implements OnInit {
   userName: string = '';
   userEmail: string = '';
   profilePic: string = '';
-  constructor(private service: DataService, private router: Router) {}
+  constructor(private service: DataService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.loadApplications();
+  }
 
   handleMouseDown(event: MouseEvent) {
     this.isDragging = true;
@@ -39,31 +43,12 @@ export class ApplicationReviewComponent implements OnInit {
       if (Math.abs(deltaX) > card.clientWidth / 2) {
         if (direction === 'right') {
           console.log('Accepted');
-          // Perform accept action
-          // this.acceptCard(card);
         } else {
           console.log('Rejected');
-          // Perform reject action
-          // this.rejectCard(card);
         }
-        // this.resetCard(card);
       }
     }
   }
-
-  // resetCard(card: HTMLElement) {
-  //   if (card) {
-  //     card.style.transition = "transform 0.3s ease, opacity 0.3s ease";
-  //     card.style.transform = "none";
-  //     card.style.opacity = "1";
-
-  //     setTimeout(() => {
-  //       if (card) {
-  //         card.style.transition = "none";
-  //       }
-  //     }, 300);
-  //   }
-  // }
 
   acceptCard() {
     this.userEmail = this.applications[this.currentIndex]?.email;
@@ -72,27 +57,22 @@ export class ApplicationReviewComponent implements OnInit {
     this.service
       .sendAcceptanceEmail(this.userEmail, this.userName)
       .subscribe(() => {
-        this.moveToNextApplication();
+        this.profilePic = this.applications[this.currentIndex].profilePhoto;
       });
-    // Perform accept action
-    // For example, you could remove the card from the UI
-    // this.moveToNextApplication();
+    this.moveToNextApplication();
   }
 
   rejectCard() {
-    // Perform reject action
-    // For example, you could reset the card position
     this.userEmail = this.applications[this.currentIndex]?.email;
     this.userName = this.applications[this.currentIndex]?.name;
     console.log(this.userEmail, this.userName);
     this.service
       .sendRejectEmail(this.userEmail, this.userName)
       .subscribe(() => {
-        this.moveToNextApplication();
       });
     this.moveToNextApplication();
-    // this.resetCard(card);
   }
+
   loadApplications() {
     this.service.getApplications().subscribe((data) => {
       this.applications = data;
@@ -102,9 +82,12 @@ export class ApplicationReviewComponent implements OnInit {
   }
   moveToNextApplication() {
     this.currentIndex++;
-    // Add logic to handle when there are no more applications left
   }
-  ngOnInit(): void {
-    this.loadApplications();
+
+  ViewResume() {
+    const pdfData = Uint8Array.from(atob(this.applications[this.currentIndex].resume.substring(28,this.applications[this.currentIndex].resume.size)), c => c.charCodeAt(0));
+    const pdfBlobObject = new Blob([pdfData], { type: 'application/pdf' });
+    const pdfUrl = URL.createObjectURL(pdfBlobObject);
+    window.open(pdfUrl, '_blank');
   }
 }

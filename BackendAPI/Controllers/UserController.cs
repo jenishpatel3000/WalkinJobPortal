@@ -15,11 +15,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.Extensions.Configuration;
-using System.Security.Claims;
 
 namespace BackendAPI.Controllers
 {
@@ -29,21 +25,15 @@ namespace BackendAPI.Controllers
     {
         private IUserService _userService;
         private IConfiguration _configuration;
-        private readonly walkin_portalContext _context;
-        // private const string SecretKey = "sRwvYz$LtzB#WqEf!aTdDgHkMnOpQrSt"; // Replace with your actual secret key
-        // private readonly SymmetricSecurityKey _securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes());
-      
-        public UserController(IUserService userService, walkin_portalContext context, IConfiguration configuration)
+        private readonly walkinportalContext _context;
+        public UserController(IUserService userService, walkinportalContext context, IConfiguration configuration)
         {
             _userService = userService;
             _context = context;
             _configuration = configuration;
         }
-        //  private readonly SymmetricSecurityKey _securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtConfig:key"]));
 
         [HttpGet]
-        [HttpGet]
-        
         [Route("/jobs")]
         public async Task<IActionResult> GetAllJobsAsync()
         {
@@ -80,17 +70,13 @@ namespace BackendAPI.Controllers
             var userObject = await _context.Users.Where(u => u.Email == loginRequest.username && u.Password == loginRequest.password).SingleOrDefaultAsync();
             if (user == null)
             {
-                // Unauthorized: Invalid username or password
                 return Unauthorized();
             }
-
-            // If authentication is successful, return a JWT token
             var token = GenerateJwtToken(user.username);
             return Ok(new { Token = token, userObject.UserId });
         }
         private string GenerateJwtToken(string username)
         {
-             // Convert userId to string
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtConfig:key"]));
             var signIn=new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
@@ -107,13 +93,7 @@ namespace BackendAPI.Controllers
                 claims,
                 expires:DateTime.UtcNow.AddHours(10),
                 signingCredentials:signIn
-
-                //Subject = new ClaimsIdentity(claims),
-                //Expires = DateTime.UtcNow.AddHours(10), // Token expiration time
-                //SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
             );
-
-           // var token = new JwtSecurityTokenHandler(tokenDescriptor);
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
 

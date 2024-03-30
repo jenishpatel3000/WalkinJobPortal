@@ -18,10 +18,10 @@ namespace AdminAPI.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly walkin_portalContext _context;
+        private readonly walkinportalContext _context;
         private IConfiguration _configuration;
         private IAdminService _adminService;
-        public AdminController(walkin_portalContext context, IConfiguration configuration, IAdminService adminService)
+        public AdminController(walkinportalContext context, IConfiguration configuration, IAdminService adminService)
         {
             _context = context;
             _configuration = configuration;
@@ -31,18 +31,12 @@ namespace AdminAPI.Controllers
         [Route("/AddJob")]
         public async Task<IActionResult> AddJob(jobRequest request)
         {
-
-
-
-
             var location = await _context.Locations.FirstOrDefaultAsync(l => l.LocationName == request.Venue);
             if (location == null)
             {
-                // Location not found, return error
                 return NotFound("Location not found");
             }
 
-            // Create a new Job entity and map properties from the jobRequest DTO
             var job = new Job
             {
                 JobName = request.JobName,
@@ -55,45 +49,35 @@ namespace AdminAPI.Controllers
                 DtModified = DateTime.Now,
             };
 
-            // Retrieve LocationId based on provided location information
-
-
-
-
-            // Add job entry to database
             _context.Jobs.Add(job);
             await _context.SaveChangesAsync();
 
-            // Add job descriptions
             var jobDesc = new JobDesc
             {
                 DescTitle = request.JobTitle,
                 Description = request.JobDescription,
-                JobId = job.JobId, // Use the generated JobId
+                JobId = job.JobId,
                 DtCreated = DateTime.Now,
                 DtModified = DateTime.Now
             };
             _context.JobDescs.Add(jobDesc);
 
-            // Add role mappings
             var role = await _context.Roles.FirstOrDefaultAsync(r => r.RoleName == request.JobRole);
             if (role == null)
             {
-                // Role not found, return error
                 return NotFound("Role not found");
             }
 
             var jobRole = new JobRole
             {
-                JobId = job.JobId, // Use the generated JobId
+                JobId = job.JobId,
                 RoleId = role.RoleId,
-                Package = request.Package,// Use the generated RoleId
+                Package = request.Package,
                 DtCreated = DateTime.Now,
                 DtModified = DateTime.Now
             };
             _context.JobRoles.Add(jobRole);
 
-            // Add slot mappings
             foreach (var slotName in request.TimeSlots)
             {
                 var slot = await _context.Slots.FirstOrDefaultAsync(s => s.FromTime.ToString() == slotName);
@@ -101,7 +85,7 @@ namespace AdminAPI.Controllers
                 {
                     var jobSlot = new JobSlot
                     {
-                        JobId = job.JobId, // Use the generated JobId
+                        JobId = job.JobId,
                         SlotId = slot.SlotId,
                         DtCreated = DateTime.Now,
                         DtModified = DateTime.Now
@@ -113,9 +97,8 @@ namespace AdminAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok();
-
-
         }
+
         [HttpGet]
         [Route("/Get/{id}")]
         public async Task<ActionResult<jobDto>> GetJob(int id)
@@ -132,10 +115,10 @@ namespace AdminAPI.Controllers
 
             if (job == null)
             {
-                return NotFound(); // Returns a 404 Not Found response if job with given ID is not found
+                return NotFound();
             }
             var endDate = job.Date.AddDays(10);
-            // Map the job entity to the JobDTO
+            
             var jobDTO = new jobDto
             {
                 JobName = job.JobName,
@@ -149,11 +132,11 @@ namespace AdminAPI.Controllers
                 ThingsToRemember = job.ThingsToRemember,
                 TimeSlots = job.JobSlots.Select(js => $"{js.Slot.FromTime}-{js.Slot.ToTime}").ToList(),
                 Package = job.JobRoles.FirstOrDefault()?.Package,
-                // Include the LocationName field from the Location table
             };
 
-            return Ok(jobDTO); // Returns the job DTO with the given ID
+            return Ok(jobDTO);
         }
+
         [HttpPost]
         [Route("/loginAdmin")]
         public async Task<IActionResult> LoginAsync(LoginRequest loginRequest)
@@ -163,17 +146,16 @@ namespace AdminAPI.Controllers
             Console.WriteLine(user);
             if (user == null)
             {
-                // Unauthorized: Invalid username or password
                 return Unauthorized();
             }
+            var userObject = await _context.Adminusers.Where(u => u.Email == loginRequest.username & u.Password == loginRequest.password).FirstOrDefaultAsync();
 
-            // If authentication is successful, return a JWT token
             var token = GenerateJwtToken(user.username);
-            return Ok(new { Token = token });
+            return Ok(new { Token = token, adminId = userObject.UserId});
         }
+
         private string GenerateJwtToken(string username)
         {
-            // Convert userId to string
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtConfig:key"]));
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -190,21 +172,14 @@ namespace AdminAPI.Controllers
                 claims,
                 expires: DateTime.UtcNow.AddHours(10),
                 signingCredentials: signIn
-
-            //Subject = new ClaimsIdentity(claims),
-            //Expires = DateTime.UtcNow.AddHours(10), // Token expiration time
-            //SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
             );
-
-            // var token = new JwtSecurityTokenHandler(tokenDescriptor);
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
+
         [HttpPut]
         [Route("/Update/{id}")]
         public async Task<IActionResult> UpdateJob(int id, jobDto request)
         {
-
-
             var job = await _context.Jobs.FindAsync(id);
 
             if (job == null)
@@ -212,21 +187,18 @@ namespace AdminAPI.Controllers
                 return NotFound();
             }
 
-            // Update job entity properties with values from the request DTO
             job.JobName = request.JobName;
             job.FromTime = request.StartDate;
             job.ToTime = request.EndDate;
             job.Venue = request.Venue;
             job.ThingsToRemember = request.ThingsToRemember;
 
-            // Update location if it exists
             var location = await _context.Locations.FirstOrDefaultAsync(l => l.LocationName == request.Venue);
             if (location != null)
             {
                 job.LocationId = location.LocationId;
             }
 
-            // Update job descriptions
             var jobDesc = await _context.JobDescs.FirstOrDefaultAsync(jd => jd.JobId == id);
             if (jobDesc != null)
             {
@@ -234,7 +206,6 @@ namespace AdminAPI.Controllers
                 jobDesc.Description = request.JobDescription;
             }
 
-            // Update job role
             var jobRole = await _context.JobRoles.FirstOrDefaultAsync(jr => jr.JobId == id);
             if (jobRole != null)
             {
@@ -246,8 +217,6 @@ namespace AdminAPI.Controllers
                 }
             }
 
-            // Update job slots (optional based on your requirement)
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -255,13 +224,11 @@ namespace AdminAPI.Controllers
             catch (DbUpdateConcurrencyException)
             {
 
-
             }
 
             return NoContent();
         }
 
-        // DELETE: api/Jobs/5
         [HttpDelete]
         [Route("/Delete/{id}")]
         public async Task<IActionResult> DeleteJob(int id)
@@ -275,7 +242,6 @@ namespace AdminAPI.Controllers
                                         .Where(a => a.JobId == id)
                                         .ToListAsync();
 
-            // Remove all related applications
             _context.Applications.RemoveRange(relatedApplications);
 
             _context.Jobs.Remove(job);
@@ -287,15 +253,12 @@ namespace AdminAPI.Controllers
         [Route("/forgot-password")]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordRequest forgotPasswordRequest)
         {
-            // Check if the email exists in the database
             var user = await _context.Adminusers.FirstOrDefaultAsync(u => u.Email == forgotPasswordRequest.Email);
             if (user == null)
             {
-                // Email not found, return NotFound
                 return NotFound("User with provided email not found");
             }
 
-            // Generate a unique token for password reset
             var token = GeneratePasswordResetToken(user);
             var mailRequest = new MailRequest
             {
@@ -305,34 +268,23 @@ namespace AdminAPI.Controllers
             };
             try
             {
-
                 await _adminService.SendEmailAsync(mailRequest);
                 return Ok(new { message = "Password reset email sent successfully" });
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that occur during email sending
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error sending password reset email");
             }
-            // Send the password reset email with the token to the user's email address
-            // Implement your email sending logic here
-
-
         }
         [HttpPost]
         [Route("/reject-application")]
         public async Task<IActionResult> ApplicationState(ApplicationStatusRequest applicationStatusRequest)
         {
-            // Check if the email exists in the database
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == applicationStatusRequest.Email);
             if (user == null)
             {
-                // Email not found, return NotFound
                 return NotFound("User with provided email not found");
             }
-
-            // Generate a unique token for password reset
-            //var token = GeneratePasswordResetToken(user);
             var mailRequest = new MailRequest
             {
                 ToEmail = user.Email,
@@ -341,34 +293,31 @@ namespace AdminAPI.Controllers
             };
             try
             {
-
+                var application = await _context.Applications.FirstOrDefaultAsync(a => a.UserId==user.UserId);
+                var roles = await _context.ApplicationRoles.Where(r => r.ApplicationId == application.ApplicationId).ToListAsync();
+                foreach (var role in roles)
+                {
+                    _context.ApplicationRoles.Remove(role);
+                }
+                _context.Applications.Remove(application);
+                await _context.SaveChangesAsync();
                 await _adminService.SendEmailAsync(mailRequest);
                 return Ok(new { message = "email sent successfully" });
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that occur during email sending
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error sending password reset email");
             }
-            // Send the password reset email with the token to the user's email address
-            // Implement your email sending logic here
-
-
         }
         [HttpPost]
         [Route("/select-application")]
         public async Task<IActionResult> ApplicationStatus(ApplicationStatusRequest applicationStatusRequest)
         {
-            // Check if the email exists in the database
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == applicationStatusRequest.Email);
             if (user == null)
             {
-                // Email not found, return NotFound
                 return NotFound("User with provided email not found");
             }
-
-            // Generate a unique token for password reset
-            //var token = GeneratePasswordResetToken(user);
             var mailRequest = new MailRequest
             {
                 ToEmail = user.Email,
@@ -377,36 +326,25 @@ namespace AdminAPI.Controllers
             };
             try
             {
-
                 await _adminService.SendEmailAsync(mailRequest);
                 return Ok(new { message = "email sent successfully" });
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that occur during email sending
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error sending password reset email");
             }
-            // Send the password reset email with the token to the user's email address
-            // Implement your email sending logic here
-
-
         }
 
         [HttpPost("Send")]
         public async Task<IActionResult> Send(MailRequest request)
         {
-
             await _adminService.SendEmailAsync(request);
             return Ok();
-
-
-
         }
 
 
         private string GeneratePasswordResetToken(Adminuser user)
         {
-            // Generate a unique token for password reset
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["jwtConfig:key"]);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -416,7 +354,7 @@ namespace AdminAPI.Controllers
                     new Claim("userId", user.UserId.ToString()),
                      new Claim("Email", user.Email.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(10), // Token expiration time (e.g., 1 hour)
+                Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -427,94 +365,68 @@ namespace AdminAPI.Controllers
 
         public async Task<IActionResult> ResetPassword(UpdatePasswordRequest resetPasswordRequest)
         {
-            // Your logic to verify the token and update the password in the database
-            // Make sure to validate the token and ensure its authenticity
-
-            // Example logic:
             var user = await _context.Adminusers.FirstOrDefaultAsync(u => u.Email == resetPasswordRequest.Email);
             if (user == null)
             {
                 return NotFound("User not found");
             }
-
-            // Update the user's password with the new password
             user.Password = resetPasswordRequest.NewPassword;
             _context.Adminusers.Update(user);
             await _context.SaveChangesAsync();
-
             return Ok("Password updated successfully");
         }
         [HttpGet]
         [Route("/getApplications")]
         public async Task<ActionResult<object>> GetAllApplicationDetails()
         {
-
-
-
-
             var applicationDetails = await _context.Applications
                 .Include(a => a.User)
-        .ThenInclude(u => u.Userassets)
+                    .ThenInclude(u => u.Userassets)
                 .Include(a => a.User)
-                .ThenInclude(u => u.Userdetails)
+                    .ThenInclude(u => u.Userdetails)
                 .Include(a => a.User)
-        .ThenInclude(u => u.Edqualifications)
-            .ThenInclude(eq => eq.Qualification)
-    .Include(a => a.User)
-        .ThenInclude(u => u.Edqualifications)
-            .ThenInclude(eq => eq.Stream)
-    .Include(a => a.User)
-        .ThenInclude(u => u.Edqualifications)
-            .ThenInclude(eq => eq.College)
+                    .ThenInclude(u => u.Edqualifications)
+                    .ThenInclude(eq => eq.Qualification)
+                .Include(a => a.User)
+                    .ThenInclude(u => u.Edqualifications)
+                    .ThenInclude(eq => eq.Stream)
+                .Include(a => a.User)
+                    .ThenInclude(u => u.Edqualifications)
+                    .ThenInclude(eq => eq.College)
                 .Include(a => a.ApplicationRoles)
-                .ThenInclude(ar => ar.Role)
+                    .ThenInclude(ar => ar.Role)
                 .Include(a => a.User.Proqualifications)
-                .ThenInclude(pq => pq.ApplicationType)
+                    .ThenInclude(pq => pq.ApplicationType)
                 .Include(a => a.User.Proqualifications)
-                .ThenInclude(pq => pq.ProqualificationFamiliarteches)
-                .ThenInclude(pft => pft.Tech)
+                    .ThenInclude(pq => pq.ProqualificationFamiliarteches)
+                    .ThenInclude(pft => pft.Tech)
                 .Include(a => a.Slot)
                 .ToListAsync();
 
             if (applicationDetails == null || !applicationDetails.Any())
             {
-
                 return NotFound();
             }
-
-
-
             var response = applicationDetails.Select(a => new
             {
                 ApplicationId = a.ApplicationId,
-
                 Email = a.User?.Email,
                 Name = a.User?.Userdetails?.FirstOrDefault()?.FirstName + " " + a.User?.Userdetails?.FirstOrDefault()?.LastName,
                 ProfilePhoto = a.User?.Userassets?.FirstOrDefault()?.ProfilePhoto,
-                //LastName = a.User?.Userdetails?.FirstOrDefault()?.LastName,
+                Resume = a.User?.Userassets.FirstOrDefault()?.Resume,
                 MobileNo = a.User?.Userdetails?.FirstOrDefault()?.PhoneNo,
                 QualificationName = a.User?.Edqualifications?.FirstOrDefault()?.Qualification?.QualificationName,
                 StreamName = a.User?.Edqualifications?.FirstOrDefault()?.Stream?.StreamName,
                 CollegeName = a.User?.Edqualifications?.FirstOrDefault()?.College?.CollegeName,
                 PassingYear = a.User?.Edqualifications?.FirstOrDefault()?.PassingYear,
                 Percentage = a.User?.Edqualifications?.FirstOrDefault()?.Percentage,
-                // RoleName = a.ApplicationRoles?.FirstOrDefault()?.Role?.RoleName,
                 RoleNames = a.ApplicationRoles?.Select(ar => ar.Role?.RoleName).ToList(),
                 ApplicationTypeName = a.User?.Proqualifications?.FirstOrDefault()?.ApplicationType?.ApplicationTypeName,
-                //TechnologyName = a.User?.Proqualifications?.FirstOrDefault()?.ProqualificationFamiliarteches?.FirstOrDefault()?.Tech?.TechName,
-                TechnologyNames = a.User?.Proqualifications?.FirstOrDefault()?.ProqualificationFamiliarteches
-                        ?.Select(pt => pt.Tech?.TechName).ToList(),
+                TechnologyNames = a.User?.Proqualifications?.FirstOrDefault()?.ProqualificationFamiliarteches?.Select(pt => pt.Tech?.TechName).ToList(),
                 ExpectedCtc = a.User?.Proqualifications?.FirstOrDefault()?.ExpectedCtc,
                 TimeSlot = $"{a.Slot?.FromTime}-{a.Slot?.ToTime}"
             }).ToList();
-
-
             return response;
-
         }
-
     }
 }
-
-
-

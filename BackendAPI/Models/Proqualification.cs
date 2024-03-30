@@ -22,10 +22,10 @@ namespace BackendAPI.Models
         public string? ZeusTestRole { get; set; }
         public int ApplicationTypeId { get; set; }
         public int UserId { get; set; }
-        public DateTime? DtCreated { get; set; }
-        public DateTime? DtModified { get; set; }
         public string? OtherExpertTechs { get; set; }
         public string? OtherFamiliarTechs { get; set; }
+        public DateTime? DtCreated { get; set; }
+        public DateTime? DtModified { get; set; }
 
         public virtual ApplicationType ApplicationType { get; set; } = null!;
         public virtual User User { get; set; } = null!;

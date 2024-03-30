@@ -6,7 +6,6 @@ import { AdminmoduleModule } from './adminmodule/adminmodule.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { HeaderComponent } from './header/header.component';
 import { JobComponent } from './job/job.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +18,6 @@ import { ApplicationReviewComponent } from './application-review/application-rev
 
 @NgModule({
   declarations: [
-    HeaderComponent,
     JobComponent,
     JoblistComponent,
     EditFormComponent,

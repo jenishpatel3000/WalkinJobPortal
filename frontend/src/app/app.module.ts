@@ -11,8 +11,9 @@ import { LoginModule } from './login/login.module';
 import { Admin } from './Admin/Admin.module';
 import { RegistrationModule } from './registration/registration.module';
 import { JobModule } from './job-page/job-page.module';
+import { AdminHeaderComponent } from './Admin/adminheader/header.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ContactComponent],
+  declarations: [AppComponent, HeaderComponent, AdminHeaderComponent, ContactComponent, ],
   imports: [
     BrowserModule,
     HttpClientModule,
