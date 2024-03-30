@@ -17,7 +17,7 @@ readonly url="https://localhost:7232"
   
 
   getJobs(): Observable<any[]> {
-    return this.http.get<any[]>('https://localhost:7087/jobs');
+    return this.http.get<any[]>('https://localhost:7232/jobs');
   }
   getApplications(): Observable<any[]> {
     return this.http.get<any[]>('https://localhost:7232/getApplications');

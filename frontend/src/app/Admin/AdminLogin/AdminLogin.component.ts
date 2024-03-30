@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     if (!this.emailInalid && !this.emailRequired && !this.passwordRequired) {
       console.log(this.loginData)
       this.http
-        .post<LoginResponse>(`https://localhost:7232/Login`, this.loginData)
+        .post<LoginResponse>(`https://localhost:7232/loginAdmin`, this.loginData)
         .pipe(
           catchError((error) => {
             alert("Invalid User");

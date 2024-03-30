@@ -10,9 +10,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ApplicationReviewComponent } from './application-review/application-review.component';
 
 const routes: Routes = [
-  { path: 'admin', component: LoginComponent },
-  { path: 'admin/add-job', component: JobComponent },
-  //  { path: 'admin/add-job', component: JobComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: LoginComponent }, // Redirect to login initially
+  { path: 'admin/add-job', component: JobComponent, canActivate: [AuthGuard] },
   {
     path: 'admin/job-list',
     component: JoblistComponent,
