@@ -1,6 +1,10 @@
 
 tr{
     color: black;
+    font-size: 1.4rem;
+}
+th{
+  font-size: 1.6rem;
 }
 $nextbuttonbgcolor: #3fd28b;
 $nextbuttoncolor: #1f2834;
@@ -12,12 +16,13 @@ $buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
   .next-button {
     background-color: $nextbuttonbgcolor;
     color: $nextbuttoncolor;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     padding: 0.3rem 1.2rem;
     border: none;
     border-radius: 0.2rem;
     box-shadow: $buttonshadow;
-    margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-right: 1.6rem;
 
     &:hover {
@@ -28,12 +33,13 @@ $buttonshadow: 0rem 0.3rem 0.5rem #0000003d;
   .delete{
     background-color:rgb(224, 102, 102);
     color: $nextbuttoncolor;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     padding: 0.3rem 1.2rem;
     border: none;
     border-radius: 0.2rem;
     box-shadow: $buttonshadow;
-    margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-right: 1.6rem;
 
     &:hover {

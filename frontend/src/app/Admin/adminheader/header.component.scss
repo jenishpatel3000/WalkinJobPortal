@@ -12,27 +12,24 @@ $fontsize20: 2rem;
     align-items: center;
     background: transparent url("/assets/Header_Pattern.jpg");
     background-color: #25313f;
-    //   background-color:;
     background-blend-mode: overlay;
+    padding-right: 2.4rem;
+    padding-left: 2.4rem;
 
     .header-title-svg {
         color: $white;
         font-size: $fontsize20;
         margin-right: auto;
-
-
     }
 }
 
 .nav-link {
     color: #fff;
-    /* White text color */
     font-family: 'Quicksand', sans-serif;
-    /* Quicksand font */
     transition: background-color 0.3s;
-    /* Smooth transition effect for background color */
     text-decoration: none !important;
     border-color: none;
+    font-size: 1.4rem;
 }
 
 #nav-tab {
@@ -40,19 +37,13 @@ $fontsize20: 2rem;
     text-decoration: none;
 }
 
-/* Hover effect */
 .nav-link:hover {
     color: lightgreen;
     border-radius: 0.4rem;
     text-decoration: none !important;
-    /* Darker blue background color on hover */
 }
 
 .nav-link:first-child {
-    margin-right: 1rem;
-    /* Adjust the amount of margin as needed */
     text-decoration: none !important;
     background-color: none;
 }
-
-/* Active tab styling */

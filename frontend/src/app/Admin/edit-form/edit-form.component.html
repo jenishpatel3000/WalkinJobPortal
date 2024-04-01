@@ -1,123 +1,73 @@
-<!-- <div class="container mt-2">
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
-    </li>
-    
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
-  
-  </div>
-</div> -->
-<!-- <div class="container">
-  
-    <form>
-      <div class="form-group">
-        <label for="jobName">Job Name:</label>
-        <input type="text" id="jobName" name="jobName"  placeholder="Enter job name" required>
-        <button type="button" class="btn btn-default" (click)="toggleJobDetails()">{{ showJobDetails ? '-' : '+' }}</button>
+<div class="container">
+
+  <form [formGroup]="userForm" (ngSubmit)="updateJob()">
+    <div class="form-group">
+      <label for="jobName">Job Name:</label>
+      <div class="input-container">
+        <input type="text" id="jobName" name="jobName" formControlName="jobName" placeholder="Enter job name">
+        <button type="button" class="add-btn" (click)="toggleTitleAndDescription('job')">+</button>
       </div>
-      <div *ngIf="showJobDetails">
-        <div class="form-group">
-          <label for="jobTitle">Job Title:</label>
-          <input type="text" id="jobTitle" name="jobTitle" placeholder="Enter job title" required>
-        </div>
-        <div class="form-group">
-          <label for="jobDescription">Job Description:</label>
-          <textarea id="jobDescription" name="jobDescription"  rows="4" placeholder="Enter job description" required></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="jobRole">Job Role:</label>
-        <input type="text" id="jobRole" name="jobRole" placeholder="Enter job role" required>
-        <button type="button" class="btn btn-default" (click)="toggleJobRoleDetails()">{{ showJobRoleDetails ? '-' : '+' }}</button>
-      </div>
-      <div *ngIf="showJobRoleDetails">
-        <div class="form-group">
-          <label for="jobResponsibilities">Job Responsibilities:</label>
-          <textarea id="jobResponsibilities" name="jobResponsibilities"  rows="4" placeholder="Enter job responsibilities" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="jobRequirements">Job Requirements:</label>
-          <textarea id="jobRequirements" name="jobRequirements"  rows="4" placeholder="Enter job requirements" required></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="button" class="btn btn-primary" (click)="addJob()">Add Job</button>
-      </div>
-    </form>
-  </div>
-   -->
-   <div class="container"> 
-   
-    <form [formGroup]="userForm" (ngSubmit)="updateJob()" >
-     <div class="form-group">
-       <label for="jobName">Job Name:</label>
-       <div class="input-container">
-         <input type="text" id="jobName" name="jobName" formControlName="jobName" placeholder="Enter job name" >
-         <button type="button" class="add-btn" (click)="toggleTitleAndDescription('job')">+</button>
-       </div>
-       <div *ngIf="showTitleAndDescription.job" class="sub-fields">
+      <div *ngIf="showTitleAndDescription.job" class="sub-fields">
         <input type="text" id="jobTitle" name="jobTitle" formControlName="jobTitle" placeholder="Enter job title">
-        <textarea id="jobDescription" name="jobDescription" rows="4" formControlName="jobDescription" placeholder="Enter job description"></textarea>
+        <textarea id="jobDescription" name="jobDescription" rows="4" formControlName="jobDescription"
+          placeholder="Enter job description"></textarea>
       </div>
-     </div>
- 
-     <div class="form-group">
-       <label for="jobRole">Job Role:</label>
-       <div class="input-container">
-         <select id="jobRole" name="jobRole" formControlName="jobRole" placeholder="selectedJob.jobRole" [(ngModel)]="selectedJob.jobRole"required>
-           <option value="manager" [selected]="selectedJob.jobRole === 'Software Intern'">Software Intern</option>
-           <option value="developer" [selected]="selectedJob.jobRole === 'Software Developer'">Software Developer</option>
-           <option value="designer" [selected]="selectedJob.jobRole === 'Software Tester'">Software Tester</option>
-            <!-- Add more job role options here -->
-          </select>
-          <button type="button" class="add-btn" (click)="toggleTitleAndDescription('role')">+</button>
-       </div>
-       <div *ngIf="showTitleAndDescription.role" class="sub-fields">
-          <input type="text" id="roleTitle" name="roleTitle"formControlName="roleTitle" placeholder="Enter role title">
-          <textarea id="roleDescription" name="roleDescription" rows="4" formControlName="roleDescription" placeholder="Enter role description"></textarea>
-        </div>
-     </div>
- 
-     <div class="form-group">
-       <label for="startDate">Start From:</label>
-       <input type="date" id="startDate" name="startDate"formControlName="startDate" [value]="selectedJob.startDate | date:'yyyy-MM-dd'" required>
-     </div>
-     <div class="form-group">
-       <label for="endDate">To:</label>
-       <input type="date" id="endDate" name="endDate"formControlName="endDate" [value]="selectedJob.endDate | date:'yyyy-MM-dd'" required>
-     </div>
-     <div class="form-group">
-       <label for="venue">Venue:</label>
-       <input type="text" id="venue" name="venue" placeholder="Enter venue" formControlName="venue" required>
-     </div>
-     <div class="form-group">
-       <label for="thingsToRemember">Things To Remember:</label>
-       <textarea id="thingsToRemember" name="thingsToRemember"formControlName="thingsToRemember" rows="4" placeholder="Enter things to remember" required></textarea>
-     </div>
-     <div class="form-group">
-       <label for="timeSlots">Time Slot:</label>
-       <select id="timeSlots" name="timeSlots" formControlName="timeSlots" multiple required>
-         <option value="9:00:00">9:00:00-11:00:00Am</option>
-         <option value="11:00:00">12:00:00-2:00:00Pm</option>
-         <option value="3:00:00">3:00:00-5:00:00Pm</option>
-          
+    </div>
+
+    <div class="form-group">
+      <label for="jobRole">Job Role:</label>
+      <div class="input-container">
+        <select id="jobRole" name="jobRole" formControlName="jobRole" placeholder="selectedJob.jobRole"
+          [(ngModel)]="selectedJob.jobRole" required>
+          <option value="manager" [selected]="selectedJob.jobRole === 'Software Intern'">Software Intern</option>
+          <option value="developer" [selected]="selectedJob.jobRole === 'Software Developer'">Software Developer
+          </option>
+          <option value="designer" [selected]="selectedJob.jobRole === 'Software Tester'">Software Tester</option>
+          <!-- Add more job role options here -->
         </select>
-     </div>
-     <div class="form-group">
-       <label for="package">Package:</label>
-       <input type="text" id="package" name="package" formControlName="package" placeholder="Enter package" required>
-     </div>
-     <div class="form-group">
-       <button type="submit" class="submit-btn">Add Job</button>
-     </div>
-   </form>
- </div>
-   
-  
+        <button type="button" class="add-btn" (click)="toggleTitleAndDescription('role')">+</button>
+      </div>
+      <div *ngIf="showTitleAndDescription.role" class="sub-fields">
+        <input type="text" id="roleTitle" name="roleTitle" formControlName="roleTitle" placeholder="Enter role title">
+        <textarea id="roleDescription" name="roleDescription" rows="4" formControlName="roleDescription"
+          placeholder="Enter role description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Start From:</label>
+      <input type="date" id="startDate" name="startDate" formControlName="startDate"
+        [value]="selectedJob.startDate | date:'yyyy-MM-dd'" required>
+    </div>
+    <div class="form-group">
+      <label for="endDate">To:</label>
+      <input type="date" id="endDate" name="endDate" formControlName="endDate"
+        [value]="selectedJob.endDate | date:'yyyy-MM-dd'" required>
+    </div>
+    <div class="form-group">
+      <label for="venue">Venue:</label>
+      <input type="text" id="venue" name="venue" placeholder="Enter venue" formControlName="venue" required>
+    </div>
+    <div class="form-group">
+      <label for="thingsToRemember">Things To Remember:</label>
+      <textarea id="thingsToRemember" name="thingsToRemember" formControlName="thingsToRemember" rows="4"
+        placeholder="Enter things to remember" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="timeSlots">Time Slot:</label>
+      <select id="timeSlots" name="timeSlots" formControlName="timeSlots" multiple required>
+        <option value="9:00:00">9:00:00-11:00:00Am</option>
+        <option value="11:00:00">12:00:00-2:00:00Pm</option>
+        <option value="3:00:00">3:00:00-5:00:00Pm</option>
+
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="package">Package:</label>
+      <input type="text" id="package" name="package" formControlName="package" placeholder="Enter package" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="submit-btn">Add Job</button>
+    </div>
+  </form>
+</div>

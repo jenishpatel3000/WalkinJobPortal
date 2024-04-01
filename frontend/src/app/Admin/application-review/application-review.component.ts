@@ -57,7 +57,9 @@ export class ApplicationReviewComponent implements OnInit {
     this.service
       .sendAcceptanceEmail(this.userEmail, this.userName)
       .subscribe(() => {
-        this.profilePic = this.applications[this.currentIndex].profilePhoto;
+        if (this.applications[this.currentIndex].profilePhoto) {
+          this.profilePic = this.applications[this.currentIndex].profilePhoto;
+        }
       });
     this.moveToNextApplication();
   }
@@ -85,7 +87,7 @@ export class ApplicationReviewComponent implements OnInit {
   }
 
   ViewResume() {
-    const pdfData = Uint8Array.from(atob(this.applications[this.currentIndex].resume.substring(28,this.applications[this.currentIndex].resume.size)), c => c.charCodeAt(0));
+    const pdfData = Uint8Array.from(atob(this.applications[this.currentIndex].resume.substring(28, this.applications[this.currentIndex].resume.size)), c => c.charCodeAt(0));
     const pdfBlobObject = new Blob([pdfData], { type: 'application/pdf' });
     const pdfUrl = URL.createObjectURL(pdfBlobObject);
     window.open(pdfUrl, '_blank');
