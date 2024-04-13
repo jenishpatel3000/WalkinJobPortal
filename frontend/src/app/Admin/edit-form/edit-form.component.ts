@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class EditFormComponent implements OnInit {
   selectedJob: any = {};
+  jobRoles: any[] = [];
+  timeSlots1: any[] = [];
   userForm: FormGroup;
   jobId: any;
   constructor(
@@ -34,18 +36,19 @@ export class EditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
     this.route.params.subscribe((params) => {
       this.jobId = params['id']; // Assuming the route parameter is 'id'
       console.log(this.jobId);
       this.GetUserByID(this.jobId);
     });
-    // this.populateForm();
+     this.populateForm();
+     this.getJobRoles();
+     this.getSLots();
   }
   GetUserByID(ID: any) {
     this.service.GetUserByID(ID).subscribe((data) => {
-      console.log('user detail', data);
-      this.selectedJob = data;
-      console.log('selectedJob', this.selectedJob);
+     
       this.populateForm();
     });
   }
@@ -88,7 +91,7 @@ export class EditFormComponent implements OnInit {
     this.service.updateJob(jobId, updatedJobData).subscribe({
       next: (data) => {
         console.log('In Add Update User');
-        alert('Updated');
+       
         this.router.navigate(['admin/job-list']);
         console.log(data);
       },
@@ -122,4 +125,18 @@ export class EditFormComponent implements OnInit {
     });
     console.log('Form Value:', this.userForm.value);
   }
+  getJobRoles(){
+    this.service.getRoles().subscribe((data) => {
+      this.jobRoles = data;
+      console.log("job roles",this.jobRoles); 
+    });
+    
+
+  }
+  getSLots(){
+    this.service.getSlots().subscribe((data) => {
+      this.timeSlots1 = data;
+      console.log("Time slots",this.timeSlots1); 
+    });
+}
 }

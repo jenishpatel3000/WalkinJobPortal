@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./job.component.scss'],
 })
 export class JobComponent implements OnInit {
+  jobRoles: any[] = [];
+  timeSlots: any[] = [];
+
   userForm: FormGroup;
   constructor(
     public fb: FormBuilder,
@@ -65,16 +68,16 @@ export class JobComponent implements OnInit {
   }
 
   SubmitForm() {
-    console.log(this.userForm.value);
+    console.log("This form",this.userForm.value);
     this.service.AddUpdateUser(this.userForm.value).subscribe({
       next: (data) => {
         console.log('In Add Update User');
-        alert('Added');
+        // alert('Added');
         console.log(data);
       },
       error: (err) => {
         if (err.status === 404) {
-          alert('User Added');
+          
           this.router.navigate(['admin/job-list']);
           console.error('Resource not found:', err);
           // Display a user-friendly error message to the user
@@ -86,6 +89,26 @@ export class JobComponent implements OnInit {
       },
     });
   }
+  getJobRoles(){
+    this.service.getRoles().subscribe((data) => {
+      this.jobRoles = data;
+      console.log("job roles",this.jobRoles); 
+    });
+    
 
-  ngOnInit(): void {}
+  }
+  getSLots(){
+    this.service.getSlots().subscribe((data) => {
+      this.timeSlots = data;
+      console.log("Time slots",this.timeSlots); 
+    });
+    
+
+  }
+
+  ngOnInit(): void {
+    this.getJobRoles();
+    this.getSLots();
+    
+  }
 }

@@ -16,11 +16,13 @@
       <div class="form-group">
         <label for="jobRole">Job Role:</label>
         <div class="input-container">
+          
           <select id="jobRole" name="jobRole" formControlName="jobRole" required>
-            <option value="manager">Software Intern</option>
+            <!-- <option value="manager">Software Intern</option>
             <option value="developer">Software Developer</option>
             <option value="designer">Software Tester</option>
-             <!-- Add more job role options here -->
+              -->
+              <option *ngFor="let role of jobRoles" [value]="role">{{ role.roleName }}</option>
            </select>
           <button type="button" class="add-btn" (click)="toggleTitleAndDescription('role')">+</button>
         </div>
@@ -49,10 +51,10 @@
       <div class="form-group">
         <label for="timeSlots">Time Slot:</label>
         <select id="timeSlots" name="timeSlots" formControlName="timeSlots" multiple required>
-          <option value="9:00:00">9:00:00-11:00:00Am</option>
+          <!-- <option value="9:00:00">9:00:00-11:00:00Am</option>
           <option value="11:00:00">12:00:00-2:00:00Pm</option>
-          <option value="3:00:00">3:00:00-5:00:00Pm</option>
-           
+          <option value="3:00:00">3:00:00-5:00:00Pm</option> -->
+          <option *ngFor="let slot of timeSlots" [value]="slot">{{ slot }}</option>
          </select>
       </div>
       <div class="form-group">

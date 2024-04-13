@@ -17,12 +17,16 @@
     <div class="form-group">
       <label for="jobRole">Job Role:</label>
       <div class="input-container">
-        <select id="jobRole" name="jobRole" formControlName="jobRole" placeholder="selectedJob.jobRole"
-          [(ngModel)]="selectedJob.jobRole" required>
-          <option value="manager" [selected]="selectedJob.jobRole === 'Software Intern'">Software Intern</option>
+       
+        <select id="jobRole" name="jobRole" formControlName="jobRole" 
+         required>
+          <option *ngFor="let role of jobRoles" [value]="role"[selected]="role.roleName === selectedJob.jobRole">{{ role.roleName }}</option>
+          <option value="Software Intern" [selected]="selectedJob.jobRole === null">Software Intern</option>
+  <!-- Add more job role options here -->
+          <!-- <option value="manager" [selected]="selectedJob.jobRole === 'Software Intern'">Software Intern</option>
           <option value="developer" [selected]="selectedJob.jobRole === 'Software Developer'">Software Developer
           </option>
-          <option value="designer" [selected]="selectedJob.jobRole === 'Software Tester'">Software Tester</option>
+          <option value="designer" [selected]="selectedJob.jobRole === 'Software Tester'">Software Tester</option> -->
           <!-- Add more job role options here -->
         </select>
         <button type="button" class="add-btn" (click)="toggleTitleAndDescription('role')">+</button>
@@ -56,9 +60,10 @@
     <div class="form-group">
       <label for="timeSlots">Time Slot:</label>
       <select id="timeSlots" name="timeSlots" formControlName="timeSlots" multiple required>
-        <option value="9:00:00">9:00:00-11:00:00Am</option>
+        <!-- <option value="9:00:00">9:00:00-11:00:00Am</option>
         <option value="11:00:00">12:00:00-2:00:00Pm</option>
-        <option value="3:00:00">3:00:00-5:00:00Pm</option>
+        <option value="3:00:00">3:00:00-5:00:00Pm</option> -->
+        <option *ngFor="let slot of timeSlots1" [value]="slot">{{ slot }}</option>
 
       </select>
     </div>
@@ -67,7 +72,7 @@
       <input type="text" id="package" name="package" formControlName="package" placeholder="Enter package" required>
     </div>
     <div class="form-group">
-      <button type="submit" class="submit-btn">Add Job</button>
+      <button type="submit" class="submit-btn">Update Job</button>
     </div>
   </form>
 </div>
